@@ -4,6 +4,8 @@ query do seu MYSQL Workbench e executar.
 ~~~
 CREATE DATABASE `koren` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */;
 
+use koren;
+
 CREATE TABLE `usuario` (
   `username` varchar(20) NOT NULL,
   `senha` varchar(20) NOT NULL,
