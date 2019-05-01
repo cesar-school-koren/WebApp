@@ -3,10 +3,8 @@ package com.school;
 
 import java.io.File;
 import java.util.List;
-import javax.naming.InitialContext;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -95,9 +93,12 @@ public class PostagemHome {
 		}
 	}
 
+	
+	@SuppressWarnings("rawtypes")
 	public List findByExample(Postagem instance) {
 		log.debug("finding Postagem instance by example");
 		try {
+			@SuppressWarnings({ "deprecation" })
 			List results = sessionFactory.getCurrentSession().createCriteria("com.school.Postagem")
 					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: " + results.size());
@@ -110,7 +111,7 @@ public class PostagemHome {
 	
 	public void terminate() {
 		log.debug("Terminating sessionFactory");
-		try {;
+		try {
 			sessionFactory.close();
 			log.debug("terminate successful");
 		} catch (RuntimeException re) {

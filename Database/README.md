@@ -8,7 +8,8 @@ CREATE SCHEMA "koren"
   AUTHORIZATION postgres;
 
 CREATE TABLE koren.CONTA(
- username VARCHAR (50) PRIMARY KEY NOT NULL,
+ id SERIAL PRIMARY KEY NOT NULL,
+ username VARCHAR (50) UNIQUE NOT NULL,
  password VARCHAR (50) NOT NULL,
  email VARCHAR (355) UNIQUE NOT NULL,
  criado_em TIMESTAMP NOT NULL,
@@ -20,7 +21,7 @@ CREATE TABLE koren.POSTAGEM(
   texto varchar(800) NOT NULL,
   id SERIAL PRIMARY KEY NOT NULL,
   criado_em timestamp NOT NULL,
-  user_id varchar(20) references koren.CONTA(username) NOT NULL,
+  user_id SERIAL references koren.CONTA(id) NOT NULL,
   tags text[] Not null
 );
 
@@ -28,7 +29,7 @@ CREATE TABLE koren.COMENTARIO(
   texto varchar(800) NOT NULL,
   id SERIAL PRIMARY KEY NOT NULL,
   criado_em timestamp NOT NULL,
-  user_id varchar(20) references koren.CONTA(username) NOT NULL,
+  user_id SERIAL references koren.CONTA(id) NOT NULL,
   post_id SERIAL references koren.POSTAGEM(id) NOT NULL,
   parent_id SERIAL,
   FOREIGN KEY (parent_id) 
