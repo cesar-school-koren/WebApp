@@ -37,7 +37,7 @@ public class Login extends HttpServlet {
 		try {
 			// operações com banco de dados
 			HttpSession session = request.getSession();
-			session.setAttribute(username, username);
+			session.setAttribute("username", username);
 			response.sendRedirect("homeLoggedIn.jsp");
 		} catch (Exception e) {
 			// TODO: handle exception
