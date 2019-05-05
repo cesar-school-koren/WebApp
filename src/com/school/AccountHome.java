@@ -1,9 +1,9 @@
 package com.school;
-// Generated 29/04/2019 14:27:10 by Hibernate Tools 5.2.12.Final
 
 import java.io.File;
 import java.util.List;
-import javax.naming.InitialContext;
+
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 
 import org.apache.commons.logging.Log;
@@ -12,28 +12,29 @@ import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.criterion.Example;
 
-/**
- * Home object for domain model class Conta.
- * @see com.school.Conta
- * @author Hibernate Tools
- */
-public class ContaHome {
 
-	private static final Log log = LogFactory.getLog(ContaHome.class);
+public class AccountHome {
+
+	private static final Log log = LogFactory.getLog(AccountHome.class);
 
 	private final SessionFactory sessionFactory = getSessionFactory();
 
 	protected SessionFactory getSessionFactory() {
-		SessionFactory sessionFactory = new Configuration().
-		configure(new File("src/META-INF/hibernate.cfg.xml"))
-		.buildSessionFactory();
-		return sessionFactory; 
+		try {
+				SessionFactory sessionFactory = new Configuration().
+				configure(new File("src/META-INF/hibernate.cfg.xml"))
+				.buildSessionFactory();
+				return sessionFactory; 
+		} catch (Exception e) {
+			log.error("Could not locate SessionFactory in JNDI", e);
+			throw new IllegalStateException("Could not locate SessionFactory in JNDI");
+		}
 	}
 
-	public void persist(Conta transientInstance) {
-		log.debug("persisting Conta instance");
+
+	public void persist(Account transientInstance) {
+		log.debug("persisting Account instance");
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
@@ -47,9 +48,30 @@ public class ContaHome {
 		}
 	}
 
+	public void attachDirty(Account instance) {
+		log.debug("attaching dirty Account instance");
+		try {
+			sessionFactory.getCurrentSession().saveOrUpdate(instance);
+			log.debug("attach successful");
+		} catch (RuntimeException re) {
+			log.error("attach failed", re);
+			throw re;
+		}
+	}
 
-	public void delete(Conta persistentInstance) {
-		log.debug("deleting Conta instance");
+	public void attachClean(Account instance) {
+		log.debug("attaching clean Account instance");
+		try {
+			sessionFactory.getCurrentSession().lock(instance, LockMode.NONE);
+			log.debug("attach successful");
+		} catch (RuntimeException re) {
+			log.error("attach failed", re);
+			throw re;
+		}
+	}
+
+	public void delete(Account persistentInstance) {
+		log.debug("deleting Account instance");
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
@@ -63,12 +85,12 @@ public class ContaHome {
 		}
 	}
 
-	public Conta merge(Conta detachedInstance) {
-		log.debug("merging Conta instance");
+	public Account merge(Account detachedInstance) {
+		log.debug("merging Account instance");
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
-			Conta result = (Conta) session.merge(detachedInstance);
+			Account result = (Account) session.merge(detachedInstance);
 			session.getTransaction().commit();
 			session.close();
 			log.debug("merge successful");
@@ -79,18 +101,19 @@ public class ContaHome {
 		}
 	}
 
-	public Conta findById(java.lang.String id) {
-		log.debug("getting Conta instance with id: " + id);
+	public Account findById(int id) {
+		log.debug("getting Account instance with id: " + id);
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
 			
-			Conta instance = (Conta) session.get("com.school.Conta", id);
+			Account instance = (Account) session.get(Account.class, id);
 			if (instance == null) {
 				log.debug("get successful, no instance found");
 			} else {
 				log.debug("get successful, instance found");
 			}
+			session.close();
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -98,20 +121,20 @@ public class ContaHome {
 		}
 	}
 
-	public List<Conta> findAll() {
-		log.debug("finding All Conta instances");
+	public List<Account> findByExample(Account instance) {
+		log.debug("finding Account instance by example");
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
-			
-			CriteriaQuery<Conta> criteriaQuery = session.getCriteriaBuilder().createQuery(Conta.class);
-			criteriaQuery.from(Conta.class);
-			
-			List<Conta> results = session.createQuery(criteriaQuery).getResultList();
-			log.debug("find all successful, result size: " + results.size());
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<Account> criteria = builder.createQuery(Account.class);
+			criteria.from(Account.class);
+			List<Account> results = session.createQuery(criteria).getResultList();
+			log.debug("find by example successful, result size: " + results.size());
+			session.close();
 			return results;
 		} catch (RuntimeException re) {
-			log.error("find all failed", re);
+			log.error("find by example failed", re);
 			throw re;
 		}
 	}
