@@ -47,7 +47,7 @@ CREATE TABLE Koren.Commentary (
     "commentary_id" serial   NOT NULL,
     "account_id" serial   NOT NULL,
     "post_id" serial   NOT NULL,
-    "parent_id" serial   NOT NULL,
+    "parent_id" serial,
     "text" text   NOT NULL,
     "creation_date" timestamp   NOT NULL,
     CONSTRAINT "pk_Commentary" PRIMARY KEY (
