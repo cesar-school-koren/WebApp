@@ -1,39 +1,77 @@
-Para criar o banco de dados que foi modelado pelo grupo para o projeto basta copiar os comandos abaixo, colar na tab de
-query do seu PgAdminIII e executar.
+Para criar o banco de dados que foi modelado pelo grupo para o projeto basta copiar os comandos abaixo e colar na tab de query do seu PgAdminIII, ou abrir o arquivo sql que se encontra nesta pasta usando query e executar.
 
 ~~~
 -- Schema: koren
 
-CREATE SCHEMA "koren"
-  AUTHORIZATION postgres;
+Create schema "koren"
+	Authorization postgres;
 
-CREATE TABLE koren.CONTA(
- id SERIAL PRIMARY KEY NOT NULL,
- username VARCHAR (50) UNIQUE NOT NULL,
- password VARCHAR (50) NOT NULL,
- email VARCHAR (355) UNIQUE NOT NULL,
- criado_em TIMESTAMP NOT NULL,
- ultimo_login TIMESTAMP
+CREATE TABLE Koren.Account (
+    "account_id" serial   NOT NULL,
+    "username" varchar(50)   NOT NULL,
+    "password" varchar(50)   NOT NULL,
+    "email" varchar(50)   NOT NULL,
+    "creation_date" timestamp   NOT NULL,
+    "last_login" timestamp   NULL,
+    CONSTRAINT "pk_Account" PRIMARY KEY (
+        "account_id"
+     ),
+    CONSTRAINT "uc_Account_username" UNIQUE (
+        "username"
+    ),
+    CONSTRAINT "uc_Account_email" UNIQUE (
+        "email"
+    )
 );
 
-CREATE TABLE koren.POSTAGEM(
-  titulo varchar(50) NOT NULL,
-  texto varchar(800) NOT NULL,
-  id SERIAL PRIMARY KEY NOT NULL,
-  criado_em timestamp NOT NULL,
-  user_id SERIAL references koren.CONTA(id) NOT NULL,
-  tags text[] Not null
+CREATE TABLE Koren.Category (
+    "category_id" serial   NOT NULL,
+    "title" varchar(200)   NOT NULL,
+    CONSTRAINT "pk_Category" PRIMARY KEY (
+        "category_id"
+     ),
+    CONSTRAINT "uc_Category_title" UNIQUE (
+        "title"
+    )
 );
 
-CREATE TABLE koren.COMENTARIO(
-  texto varchar(800) NOT NULL,
-  id SERIAL PRIMARY KEY NOT NULL,
-  criado_em timestamp NOT NULL,
-  user_id SERIAL references koren.CONTA(id) NOT NULL,
-  post_id SERIAL references koren.POSTAGEM(id) NOT NULL,
-  parent_id SERIAL,
-  FOREIGN KEY (parent_id) 
-  REFERENCES koren.comentario (id) 
-  ON DELETE CASCADE
+CREATE TABLE Koren.Post (
+    "post_id" serial   NOT NULL,
+    "account_id" serial   NOT NULL,
+    "category_id" serial   NOT NULL,
+    "text" text   NOT NULL,
+    "title" varchar(50)   NOT NULL,
+    "creation_date" timestamp   NOT NULL,
+    "tags" text[]   NOT NULL,
+    CONSTRAINT "pk_Post" PRIMARY KEY (
+        "post_id"
+     )
 );
+
+CREATE TABLE Koren.Commentary (
+    "commentary_id" serial   NOT NULL,
+    "account_id" serial   NOT NULL,
+    "post_id" serial   NOT NULL,
+    "parent_id" serial   NOT NULL,
+    "text" text   NOT NULL,
+    "creation_date" timestamp   NOT NULL,
+    CONSTRAINT "pk_Commentary" PRIMARY KEY (
+        "commentary_id"
+     )
+);
+
+ALTER TABLE Koren.Post ADD CONSTRAINT "fk_Post_account_id" FOREIGN KEY("account_id")
+REFERENCES Koren.Account ("account_id") ON DELETE CASCADE;
+
+ALTER TABLE Koren.Post ADD CONSTRAINT "fk_Post_category_id" FOREIGN KEY("category_id")
+REFERENCES Koren.Category ("category_id") ON DELETE CASCADE;
+
+ALTER TABLE Koren.Commentary ADD CONSTRAINT "fk_Commentary_account_id" FOREIGN KEY("account_id")
+REFERENCES Koren.Account ("account_id") ON DELETE CASCADE;
+
+ALTER TABLE Koren.Commentary ADD CONSTRAINT "fk_Commentary_post_id" FOREIGN KEY("post_id")
+REFERENCES Koren.Post ("post_id") ON DELETE CASCADE;
+
+ALTER TABLE Koren.Commentary ADD CONSTRAINT "fk_Commentary_parent_id" FOREIGN KEY("parent_id")
+REFERENCES Koren.Commentary ("commentary_id") ON DELETE CASCADE;
 ~~~
