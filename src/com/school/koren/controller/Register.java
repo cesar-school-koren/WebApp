@@ -2,12 +2,16 @@ package com.school.koren.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.school.Account;
+import com.school.AccountHome;
 
 /**
  * Servlet implementation class Register
@@ -42,12 +46,20 @@ public class Register extends HttpServlet {
 		PrintWriter writer = response.getWriter();
 		
 		String username = request.getParameter("username");
-		String email = request.getParameter("password");
+		String email = request.getParameter("email");
 		String password1 = request.getParameter("password1");
 		String password2 = request.getParameter("password2");
 		
 		if (password1.equals(password2)) {
-			// operação de cadastrar no banco de dados
+			Date agora = new Date();
+			AccountHome accountHome = new AccountHome();
+			Account conta = new Account();
+			conta.setUsername(username);
+			conta.setPassword(password1);
+			conta.setEmail(email);
+			conta.setCreationDate(agora);
+			accountHome.persist(conta);
+			accountHome.terminate();
 			response.sendRedirect("login.jsp");
 		}
 		else {
