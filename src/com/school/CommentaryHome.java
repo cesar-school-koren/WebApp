@@ -23,7 +23,7 @@ public class CommentaryHome {
 	protected SessionFactory getSessionFactory() {
 		try {
 				SessionFactory sessionFactory = new Configuration().
-				configure(new File("src/META-INF/hibernate.cfg.xml"))
+				configure(new File("C:\\Users\\Tiago\\Cesar-School\\WebApp\\src\\META-INF\\hibernate.cfg.xml"))
 				.buildSessionFactory();
 				return sessionFactory; 
 		} catch (Exception e) {
