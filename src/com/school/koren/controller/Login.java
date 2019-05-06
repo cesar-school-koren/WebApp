@@ -48,12 +48,6 @@ public class Login extends HttpServlet {
 		
 		// aqui fazer a operação de checar no banco de dados
 		try {
-<<<<<<< Updated upstream
-			// operações com banco de dados
-			HttpSession session = request.getSession();
-			session.setAttribute(username, username);
-			response.sendRedirect("homeLoggedIn.jsp");
-=======
 			AccountHome accountHome = new AccountHome();
 			Account conta = new Account();
 			conta.setUsername(username);
@@ -67,7 +61,7 @@ public class Login extends HttpServlet {
 			}else {
 				System.out.println("Senha errada!");
 			}
->>>>>>> Stashed changes
+
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
