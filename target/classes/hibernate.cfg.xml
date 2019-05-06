@@ -10,8 +10,9 @@
   <property name="hibernate.default_schema">koren</property>
   <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
   <property name="hibernate.current_session_context_class">thread</property>
-  <mapping class="com.school.Conta" file="Conta" package="com.school"/>
-  <mapping class="com.school.Postagem" file="Postagem" package="com.school"/>
-  <mapping class="com.school.Comentario" file="Comentario" package="com.School"/>
+  <mapping class="com.school.Account" file="Account" package="com.school"/>
+  <mapping class="com.school.Category" file="Category" package="com.school"/>
+  <mapping class="com.school.Commentary" file="Commentary" package="com.school"/>
+  <mapping class="com.school.Post" file="Post" package="com.school"/>
  </session-factory>
 </hibernate-configuration>

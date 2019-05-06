@@ -22,9 +22,7 @@ public class AccountHome {
 
 	protected SessionFactory getSessionFactory() {
 		try {
-				SessionFactory sessionFactory = new Configuration().
-				configure(new File("C:\\Users\\Tiago\\Cesar-School\\WebApp\\src\\META-INF\\hibernate.cfg.xml"))
-				.buildSessionFactory();
+				SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 				return sessionFactory; 
 		} catch (Exception e) {
 			log.error("Could not locate SessionFactory in JNDI", e);

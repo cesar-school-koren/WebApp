@@ -22,9 +22,7 @@ public class CommentaryHome {
 
 	protected SessionFactory getSessionFactory() {
 		try {
-				SessionFactory sessionFactory = new Configuration().
-				configure(new File("src/META-INF/hibernate.cfg.xml"))
-				.buildSessionFactory();
+				SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 				return sessionFactory; 
 		} catch (Exception e) {
 			log.error("Could not locate SessionFactory in JNDI", e);
