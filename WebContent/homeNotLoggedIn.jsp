@@ -3,13 +3,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Home Page</title>
+    <link rel="stylesheet" href="homeLoggedIn.css" type="text/css">
+    <meta charset="UTF-8">
+    <title>Home Page</title>
 </head>
 <body>
     <a href="login.jsp">Login</a>
     <a href="register.jsp">Register</a>
-    <a href="seteAdez.jsp">Sete A Dez Anos</a>
-    <h1>Home Page</h1>
+    <div class="categorias">
+        <a href="seteAdez.jsp">Sete A Dez Anos</a>
+    </div>
+    <h2 class="homePageTitle">Home Page</h2>
 </body>
 </html>

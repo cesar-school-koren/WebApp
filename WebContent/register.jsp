@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="inputPages.css" type="text/css">
 	<meta charset="UTF-8">
 	<title>Register</title>
 </head>
@@ -13,8 +14,8 @@
         <pre>
             Username : <input type="text" name="username">
             Email : <input type="text" name="email">
-            Password : <input type="text" name="password1">
-            Type Again : <input type="text" name="password2">
+            Password : <input type="password" name="password1">
+            Type Again : <input type="password" name="password2">
             <!-- verificar aqui a senha ou no servlet? -->
             <!-- 
       		
