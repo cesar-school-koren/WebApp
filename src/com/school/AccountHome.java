@@ -15,7 +15,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
-import com.school.webapp.Account;
+import com.school.Account;
 
 
 public class AccountHome {

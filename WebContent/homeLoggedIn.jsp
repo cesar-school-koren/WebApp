@@ -17,6 +17,9 @@
             out.print(session.getAttribute("username"));
         %>
     </div>
+    <div class="post">
+        <a href="createPost.jsp">Fazer postagem</a>
+    </div>
     <div class="categorias">
         <a href="seteAdez.jsp">Sete A Dez Anos</a>
     </div>
