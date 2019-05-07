@@ -21,14 +21,14 @@ import com.school.PostHome;
  * Servlet implementation class SeteADez
  */
 @WebServlet("/SeteADez")
-public class SeteADez extends HttpServlet {
+public class ZeroADois extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	String page="seteAdez.jsp";
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SeteADez() {
+    public ZeroADois() {
         super();
         // TODO Auto-generated constructor stub
     }
