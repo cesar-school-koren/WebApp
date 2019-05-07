@@ -134,6 +134,7 @@ public class AccountHome {
 			
 			Predicate predicate = builder.and();
 			
+			//Replicar para todos os atributos
 			if(instance.getUsername() != null) {
 				predicate = builder.and(builder.equal(root.get("username"), instance.getUsername()));
 			}
