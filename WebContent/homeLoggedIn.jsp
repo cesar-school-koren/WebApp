@@ -17,6 +17,9 @@
             out.print(session.getAttribute("username"));
         %>
     </div>
-    <h2>Home Page</h2>
+    <div class="categorias">
+        <a href="seteAdez.jsp">Sete A Dez Anos</a>
+    </div>
+    <h2 class="homePageTitle">Home Page</h2>
 </body>
 </html>

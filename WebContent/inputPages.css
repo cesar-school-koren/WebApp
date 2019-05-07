@@ -1,0 +1,6 @@
+input[type=submit]{
+    position: relative;
+    background-color: #e0e0d1;
+    text-align: right;
+    display: inline-block;
+}
