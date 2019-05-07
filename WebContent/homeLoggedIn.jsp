@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="homeLoggedIn.css">
+    <link rel="stylesheet" type="text/css" href="home.css">
     <meta charset="UTF-8">
     <title>Home Page</title>
 </head>
