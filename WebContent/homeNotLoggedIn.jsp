@@ -9,6 +9,7 @@
 <body>
     <a href="login.jsp">Login</a>
     <a href="register.jsp">Register</a>
+    <a href="seteAdez.jsp">Sete A Dez Anos</a>
     <h1>Home Page</h1>
 </body>
 </html>
