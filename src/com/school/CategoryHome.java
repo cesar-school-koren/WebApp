@@ -1,6 +1,5 @@
 package com.school;
 
-import java.io.File;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -24,10 +23,6 @@ public class CategoryHome {
 		try {
 			SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 			return sessionFactory; 
-//				SessionFactory sessionFactory = new Configuration().
-//				configure(new File("C:\\Users\\Tiago\\Cesar-School\\WebApp\\src\\META-INF\\hibernate.cfg.xml"))
-//				.buildSessionFactory();
-//				return sessionFactory; 
 		} catch (Exception e) {
 			log.error("Could not locate SessionFactory in JNDI", e);
 			throw new IllegalStateException("Could not locate SessionFactory in JNDI");
