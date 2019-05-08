@@ -28,9 +28,11 @@ function onLoadSubmit() {
             out.print(session.getAttribute("username"));
         %>
     </div>
-    <!-- mostra os post dos usuários (atualmente nao funcionando) -->
-	<form action="UserPosts" method="post" name="load">
+    <!-- mostra os post dos usuários -->
+	<form name="load" > <!-- o metodo action tentava chamar o servlet e dava erro, agora funcionando! -->
 		<%
+			// algum erro com o hibernate após muito tempo executando
+			// usar um try catch talvez? to com sono agora pra tentar fazer isso.
 			String username = session.getAttribute("username").toString();
 			
 			Account conta = new Account();
@@ -41,15 +43,21 @@ function onLoadSubmit() {
 			PostHome postHome = new PostHome();
 			post.setAccountId(accountHome.findByExample(conta).get(0));
 			
-			// pegar a lista de posts 
+			
 			List<Post> postagens = postHome.findByExample(post);
 			
-			// erro em algo no codigo html abaixo?????
-			for(Post postagem : postagens){
+			if (!postagens.isEmpty()){
+				for(Post postagem : postagens){
+					%>
+						<hr>
+						<h2><%= postagem.getTitle() %></h2>
+						<p><%= postagem.getText() %></p>
+					<% 
+				}
+			}
+			else{
 				%>
-					<hr>
-					<h2>(<%= postagem.getTitle() %>)</h2>
-					<p>(<%= postagem.getText() %>)</p>
+					<h2>Esse usuario nao tem postagens.</h2>
 				<% 
 			}
 		%>
