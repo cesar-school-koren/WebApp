@@ -17,3 +17,10 @@ div.categorias{
     display: block; 
     margin: auto;
 }
+
+div.post{
+    position: relative;
+    display: inline;
+    text-align: right;
+    padding: 10px 10px;
+}

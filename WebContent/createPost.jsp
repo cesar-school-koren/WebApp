@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="inputPages.css" type="text/css">
     <meta charset="UTF-8">
     <title>Post</title>
 </head>
@@ -11,8 +12,8 @@
     <form action="CreatePost" method="POST">
         <pre>
             Titulo : <input type="text" name="titulo">
-            <input type="text" name="texto">
-            <input type="submit" value="enviar">
+                     <input type="text" name="texto">
+                     <input type="submit" value="enviar">
         </pre>
     </form>
 </body>
