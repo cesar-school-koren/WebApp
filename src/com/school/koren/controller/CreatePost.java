@@ -79,6 +79,7 @@ public class CreatePost extends HttpServlet {
 		post.setTitle(titulo);
 		post.setText(texto);
 		posthome.persist(post);
+		response.sendRedirect("homeLoggedIn.jsp");
 	}
 
 }
