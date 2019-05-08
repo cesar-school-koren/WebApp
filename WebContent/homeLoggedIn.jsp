@@ -8,7 +8,6 @@
     <title>Home Page</title>
 </head>
 <body>
-    <!-- ainda falta referencia para pagina de criar postagem -->
     <a href="logout.jsp">Logout</a>
     <!-- mostra o nome do usuario logado -->
     <div class="user">
