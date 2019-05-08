@@ -45,8 +45,8 @@ public class Register extends HttpServlet {
 		
 		PrintWriter writer = response.getWriter();
 		
-		String username = request.getParameter("username");
-		String email = request.getParameter("email");
+		String username = request.getParameter("username").trim();
+		String email = request.getParameter("email").trim();
 		String password1 = request.getParameter("password1");
 		String password2 = request.getParameter("password2");
 		

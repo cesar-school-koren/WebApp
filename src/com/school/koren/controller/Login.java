@@ -43,7 +43,7 @@ public class Login extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 		
-		String username = request.getParameter("username");
+		String username = request.getParameter("username").trim();
 		String password = request.getParameter("password");
 		
 		// aqui fazer a operação de checar no banco de dados
