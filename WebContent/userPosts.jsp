@@ -1,10 +1,16 @@
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.school.PostHome"%>
+<%@page import="com.school.Post"%>
+<%@page import="com.school.AccountHome"%>
+<%@page import="com.school.Account"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Postagens do Usuário</title>
+	<meta charset="ISO-8859-1">
+	<title>Postagens do Usuário</title>
 </head>
 <body>
 <script>
@@ -22,7 +28,32 @@ function onLoadSubmit() {
             out.print(session.getAttribute("username"));
         %>
     </div>
-	<form action="UserPosts" method="post" name="load"></form>
+    <!-- mostra os post dos usuários (atualmente nao funcionando) -->
+	<form action="UserPosts" method="post" name="load">
+		<%
+			String username = session.getAttribute("username").toString();
+			
+			Account conta = new Account();
+			AccountHome accountHome = new AccountHome();
+			conta.setUsername(username);
+			
+			Post post = new Post();
+			PostHome postHome = new PostHome();
+			post.setAccountId(accountHome.findByExample(conta).get(0));
+			
+			// pegar a lista de posts 
+			List<Post> postagens = postHome.findByExample(post);
+			
+			// erro em algo no codigo html abaixo?????
+			for(Post postagem : postagens){
+				%>
+					<hr>
+					<h2>(<%= postagem.getTitle() %>)</h2>
+					<p>(<%= postagem.getText() %>)</p>
+				<% 
+			}
+		%>
+	</form>
 </body>
 </body>
 </html>
