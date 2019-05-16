@@ -32,7 +32,7 @@ function onLoadSubmit() {
 	<form name="load" > <!-- o metodo action tentava chamar o servlet e dava erro, agora funcionando! -->
 		<%
 			// algum erro com o hibernate após muito tempo executando
-			// usar um try catch talvez? to com sono agora pra tentar fazer isso.
+			// try catch tambem nao funcionou
 			String username = session.getAttribute("username").toString();
 			
 			Account conta = new Account();
