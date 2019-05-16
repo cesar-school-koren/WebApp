@@ -50,17 +50,22 @@ public class Register extends HttpServlet {
 		String password1 = request.getParameter("password1");
 		String password2 = request.getParameter("password2");
 		
-		if (password1.equals(password2)) {
-			Date agora = new Date();
-			AccountHome accountHome = new AccountHome();
-			Account conta = new Account();
-			conta.setUsername(username);
-			conta.setPassword(password1);
-			conta.setEmail(email);
-			conta.setCreationDate(agora);
-			accountHome.persist(conta);
-			accountHome.terminate();
-			response.sendRedirect("login.jsp");
+		if (password1.isEmpty() == false && password1.equals(password2)) {
+			try {
+				Date agora = new Date();
+				AccountHome accountHome = new AccountHome();
+				Account conta = new Account();
+				conta.setUsername(username);
+				conta.setPassword(password1);
+				conta.setEmail(email);
+				conta.setCreationDate(agora);
+				accountHome.persist(conta);
+				accountHome.terminate();
+				response.sendRedirect("login.jsp");
+			} catch (Exception e) {
+				writer.println("usuário ja existe");
+				response.sendRedirect("register.jsp");
+			}
 		}
 		else {
 			writer.println("senhas nao batem");
