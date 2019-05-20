@@ -1,8 +1,10 @@
 package com.school.koren.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,6 +45,9 @@ public class Login extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 		
+		PrintWriter out = response.getWriter();
+		response.setContentType("text/html");
+		
 		String username = request.getParameter("username").trim();
 		String password = request.getParameter("password");
 		
@@ -60,6 +65,9 @@ public class Login extends HttpServlet {
 				response.sendRedirect("homeLoggedIn.jsp");
 			}else {
 				System.out.println("Senha errada!");
+				out.print("Senha errada!");
+				RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+				rd.include(request, response);
 			}
 
 		} catch (Exception e) {
