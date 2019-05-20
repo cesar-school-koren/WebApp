@@ -8,5 +8,16 @@
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
+    <welcome-file>homeNotLoggedIn.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>userPosts</display-name>
+    <servlet-name>userPosts</servlet-name>
+    <jsp-file>/userPosts.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>userPosts</servlet-name>
+    <url-pattern>/userPosts</url-pattern>
+  </servlet-mapping>
 </web-app>
