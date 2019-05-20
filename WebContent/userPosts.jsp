@@ -43,6 +43,9 @@ function onLoadSubmit() {
     			
     			session.setAttribute("posts", postagens);
     			
+    			RequestDispatcher rd = request.getRequestDispatcher("userPosts.jsp");
+    			rd.forward(request, response);
+    			
     		} catch (Exception e) {
     			// TODO: handle exception
     		}
