@@ -1,6 +1,7 @@
 package com.school.koren.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -36,15 +37,6 @@ public class UserPosts extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 		
 		HttpSession session = request.getSession(false);
 		
@@ -59,7 +51,11 @@ public class UserPosts extends HttpServlet {
 			PostHome postHome = new PostHome();
 			post.setAccountId(accountHome.findByExample(conta).get(0));
 			
-			List<Post> postagens = postHome.findByExample(post);
+			List<Post> postagens = new ArrayList<>();
+			
+			for (Post postagem : postHome.findByExample(post)) {
+				postagens.add(postagem);
+			}
 			
 			request.setAttribute("posts", postagens);
 			
@@ -69,6 +65,16 @@ public class UserPosts extends HttpServlet {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+		
 	}
 
 }
