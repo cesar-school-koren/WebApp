@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,7 +34,6 @@ public class Register extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -63,14 +63,15 @@ public class Register extends HttpServlet {
 				accountHome.terminate();
 				response.sendRedirect("login.jsp");
 			} catch (Exception e) {
-				writer.println("usuário ja existe");
-				response.sendRedirect("register.jsp");
+				writer.print("usuário ja existe");
+				RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
+				rd.forward(request, response);
 			}
 		}
 		else {
 			writer.println("senhas nao batem");
-			// alguma forma de mandar um print para o jsp
-			response.sendRedirect("register.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
+			rd.forward(request, response);
 		}
 		
 	}
