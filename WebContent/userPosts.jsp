@@ -1,3 +1,10 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="com.school.PostHome"%>
+<%@page import="com.school.Post"%>
+<%@page import="com.school.AccountHome"%>
+<%@page import="com.school.Account"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -5,7 +12,7 @@
 <html>
 <head>
 	<meta charset="ISO-8859-1">
-	<title>Postagens do Usu�rio</title>
+	<title>Postagens do Usuario</title>
 </head>
 <body>
 <script>
@@ -25,7 +32,49 @@ function onLoadSubmit() {
         %>
     </div>
     <!-- mostra os post dos usuarios -->
-	<form name="load"> 
+	<form name="load">
+		<%
+			String username = session.getAttribute("username").toString();
+		
+			try {
+				Account conta = new Account();
+				AccountHome accountHome = new AccountHome();
+				conta.setUsername(username);
+				
+				Post post = new Post();
+				PostHome postHome = new PostHome();
+				post.setAccountId(accountHome.findByExample(conta).get(0));
+				
+				List<Post> postagens = new ArrayList<>();
+				
+				for (Post postagem : postHome.findByExample(post)) {
+					postagens.add(postagem);
+				}
+				
+				if (postagens.isEmpty()){
+					%>
+						<div>
+							<h2>Esse usuario nao tem postagens</h2>
+						</div>
+					<% 
+				}
+				else{
+					for(Post postagem : postagens) {
+						%>
+							<div>
+								<h2><%= postagem.getTitle() %></h2>
+								<p><%= postagem.getText() %><</p>
+								<hr>
+							</div>
+						<% 
+					}
+				}
+				
+			 } catch (Exception e){
+					
+			 }
+		%>
+		<!--   
 		<c:if test="${posts.isEmpty()}">
 			<h2>Esse usuario nao tem postagens</h2>
 		</c:if>
@@ -38,6 +87,7 @@ function onLoadSubmit() {
 				</div>
 			</c:forEach>
 		</c:if>
+		-->
 	</form>
 </body>
 </body>
