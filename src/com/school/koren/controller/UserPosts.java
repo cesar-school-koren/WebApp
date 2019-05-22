@@ -36,7 +36,6 @@ public class UserPosts extends HttpServlet {
     public void init() throws ServletException {
     	// TODO Auto-generated method stub
     	super.init();
-    	System.out.println("iniciei servlet UserPosts.java");
     }
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
