@@ -16,25 +16,7 @@
             Email : <input type="text" name="email">
             Password : <input type="password" name="password1">
             Type Again : <input type="password" name="password2">
-            <!-- verificar aqui a senha ou no servlet? -->
-            <!-- 
-      		
-      			// nao funcionando, código comentado para que seja possivel fazer testes
-      			String password1 = request.getParameter("password1");
-      			String password2 = request.getParameter("password2");
-      			
-      			if (password1.equals(password2)){
-      				
-      				-->
       					<input type="submit" value="register">
-      				<!-- 	
-      				
-      			}
-      			else{
-      				out.println("senhas nao sao iguais.");
-      			}
-      		%>
-      		-->
         </pre>
     </form>
 </body>
