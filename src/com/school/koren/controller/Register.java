@@ -62,14 +62,14 @@ public class Register extends HttpServlet {
 				accountHome.persist(conta);
 				accountHome.terminate();
 				response.sendRedirect("login.jsp");
-			} catch (Exception e) {
-				writer.print("usuário ja existe");
+			} catch (IOException e) {
+				writer.print("Usuario ja existe!");
 				RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
 				rd.forward(request, response);
 			}
 		}
 		else {
-			writer.println("senhas nao batem");
+			writer.print("Senhas nao batem!");
 			RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
 			rd.forward(request, response);
 		}
