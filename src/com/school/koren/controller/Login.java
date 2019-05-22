@@ -70,8 +70,11 @@ public class Login extends HttpServlet {
 				rd.include(request, response);
 			}
 
-		} catch (Exception e) {
-			// TODO: handle exception
+		} catch (IOException e) {
+			System.out.println("Usuario nao existe!");
+			out.print("Usuario nao existe!");
+			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+			rd.include(request, response);
 		}
 	}
 
