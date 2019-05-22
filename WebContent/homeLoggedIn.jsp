@@ -14,7 +14,7 @@
     <h4 class="user"><c:out value="${username}" /></h4>
     <div class="post">
         <a href="createPost.jsp">Fazer postagem</a>
-        <a href="userPost.jsp">Postagens do user</a>
+        <a href="UserPosts">Postagens do usuario</a> <!-- chama o servlet que redireciona para o jsp -->
     </div>
     <div class="categorias">
         <a href="seteAdez.jsp">Sete A Dez Anos</a>
