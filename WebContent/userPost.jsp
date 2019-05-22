@@ -14,7 +14,6 @@
     <h4 class="user"><c:out value="${username}" /></h4>
     <!-- mostra os post dos usuarios -->
 	<div class="show-posts">
-		<!-- por algum motivo o jsp nao chama o servlet -->
 		<c:if test="${posts.isEmpty()}">
 			<h2>Esse usuario nao tem postagens</h2>
 		</c:if>
