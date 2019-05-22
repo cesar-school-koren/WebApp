@@ -31,7 +31,13 @@ public class UserPosts extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-
+    
+    @Override
+    public void init() throws ServletException {
+    	// TODO Auto-generated method stub
+    	super.init();
+    	System.out.println("iniciei servlet UserPosts.java");
+    }
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -59,21 +65,12 @@ public class UserPosts extends HttpServlet {
 			
 			request.setAttribute("posts", postagens);
 			
-			RequestDispatcher rd = request.getRequestDispatcher("userPosts.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/userPost.jsp");
 			rd.forward(request, response);
 			
-		} catch (Exception e) {
+		} catch (IOException e) {
 			// TODO: handle exception
 		}
-		
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 		
 	}
 
