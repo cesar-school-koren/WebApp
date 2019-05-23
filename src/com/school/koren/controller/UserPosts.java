@@ -69,9 +69,9 @@ public class UserPosts extends HttpServlet {
 //			
 //			List<Post> postagens = new ArrayList<>();
 			
-			for (Post postagem : conta.getPosts()) {
-				postagens.add(postagem);
-			}
+//			for (Post postagem : conta.getPosts()) {
+//				postagens.add(postagem);
+//			}
 			
 			request.setAttribute("posts", postagens);
 			
