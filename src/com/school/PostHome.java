@@ -136,6 +136,26 @@ public class PostHome {
 				predicate = builder.and(builder.equal(root.get("account_id"), instance.getAccountId()));
 			}
 			
+			if(instance.getCategoryId() != null) {
+				predicate = builder.and(builder.equal(root.get("category_id"), instance.getCategoryId()));
+			}
+			
+			if(instance.getCreationDate() != null) {
+				predicate = builder.and(builder.equal(root.get("creation_date"), instance.getCreationDate()));
+			}
+			
+			if(instance.getTags() != null) {
+				predicate = builder.and(builder.equal(root.get("tags"), instance.getTags()));
+			}
+			
+			if(instance.getTitle() != null) {
+				predicate = builder.and(builder.equal(root.get("title"), instance.getTitle()));
+			}
+			
+			if(instance.getText() != null) {
+				predicate = builder.and(builder.equal(root.get("text"), instance.getText()));
+			}
+			
 			criteria.select(root).where(predicate);
 			Query<Post> q = session.createQuery(criteria);
 			List<Post> results = q.getResultList();

@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -11,6 +13,7 @@ import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
 
 public class CategoryHome {
@@ -124,8 +127,18 @@ public class CategoryHome {
 			session.beginTransaction();
 			CriteriaBuilder builder = session.getCriteriaBuilder();
 			CriteriaQuery<Category> criteria = builder.createQuery(Category.class);
-			criteria.from(Category.class);
-			List<Category> results = session.createQuery(criteria).getResultList();
+			Root<Category> root = criteria.from(Category.class);
+			
+			Predicate predicate = builder.and();
+			
+			//Replicar para todos os atributos
+			if(instance.getTitle() != null) {
+				predicate = builder.and(builder.equal(root.get("title"), instance.getTitle()));
+			}
+			
+			criteria.select(root).where(predicate);
+			Query<Category> q = session.createQuery(criteria);
+			List<Category> results = q.getResultList();
 			log.debug("find by example successful, result size: " + results.size());
 			session.close();
 			return results;

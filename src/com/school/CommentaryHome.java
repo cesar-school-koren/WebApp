@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -11,6 +13,7 @@ import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
 
 public class CommentaryHome {
@@ -124,8 +127,34 @@ public class CommentaryHome {
 			session.beginTransaction();
 			CriteriaBuilder builder = session.getCriteriaBuilder();
 			CriteriaQuery<Commentary> criteria = builder.createQuery(Commentary.class);
-			criteria.from(Commentary.class);
-			List<Commentary> results = session.createQuery(criteria).getResultList();
+			Root<Commentary> root = criteria.from(Commentary.class);
+			
+			Predicate predicate = builder.and();
+			
+			//Replicar para todos os atributos
+			if(instance.getAccountId() != null) {
+				predicate = builder.and(builder.equal(root.get("account_id"), instance.getAccountId()));
+			}
+			
+			if(instance.getCreationDate() != null) {
+				predicate = builder.and(builder.equal(root.get("creation_date"), instance.getCreationDate()));
+			}
+			
+			if(instance.getParentId() != null) {
+				predicate = builder.and(builder.equal(root.get("parent_id"), instance.getParentId()));
+			}
+			
+			if(instance.getPostId() != null) {
+				predicate = builder.and(builder.equal(root.get("post_id"), instance.getPostId()));
+			}
+			
+			if(instance.getText() != null) {
+				predicate = builder.and(builder.equal(root.get("text"), instance.getText()));
+			}
+			
+			criteria.select(root).where(predicate);
+			Query<Commentary> q = session.createQuery(criteria);
+			List<Commentary> results = q.getResultList();
 			log.debug("find by example successful, result size: " + results.size());
 			session.close();
 			return results;

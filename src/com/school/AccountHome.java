@@ -15,8 +15,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
-import com.school.Account;
-
 
 public class AccountHome {
 
@@ -137,6 +135,18 @@ public class AccountHome {
 			//Replicar para todos os atributos
 			if(instance.getUsername() != null) {
 				predicate = builder.and(builder.equal(root.get("username"), instance.getUsername()));
+			}
+			
+			if(instance.getEmail() != null) {
+				predicate = builder.and(builder.equal(root.get("email"), instance.getEmail()));
+			}
+			
+			if(instance.getCreationDate() != null) {
+				predicate = builder.and(builder.equal(root.get("creation_date"), instance.getCreationDate()));
+			}
+			
+			if(instance.getLastLogin() != null) {
+				predicate = builder.and(builder.equal(root.get("last_login"), instance.getLastLogin()));
 			}
 			
 			criteria.select(root).where(predicate);
