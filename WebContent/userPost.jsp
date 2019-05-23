@@ -22,11 +22,9 @@
 				<div>
 					<hr>
 					<h3>
-						<a href="post.jsp">
+						<!-- quando clica se coloca o objeto post como atributo da sessao http, ou era pra estar acontecendo isso -->
+						<a href="post.jsp" onclick="<% session.setAttribute("post", pageContext.getAttribute("post")); %>">
 							<c:out value="${post.getTitle()}" />
-							<%
-								 session.setAttribute("post", pageContext.getAttribute("post"));
-							%>
 						</a>
 					</h3>
 					<p><c:out value="${post.getText()}" /></p>
