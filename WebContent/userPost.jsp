@@ -21,7 +21,14 @@
 			<c:forEach items="${posts}" var="post">
 				<div>
 					<hr>
-					<h3><c:out value="${post.getTitle()}" /></h3>
+					<h3>
+						<a href="ShowPost">
+							<c:out value="${post.getTitle()}" />
+							<%
+								 session.setAttribute("post", pageContext.getAttribute("post"));
+							%>
+						</a>
+					</h3>
 					<p><c:out value="${post.getText()}" /></p>
 				</div>
 			</c:forEach>
