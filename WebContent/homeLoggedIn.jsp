@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,15 +11,10 @@
 <body>
     <a href="logout.jsp">Logout</a>
     <!-- mostra o nome do usuario logado -->
-    <div class="user">
-        <%
-        	// pega o username a partir do atributo adicionado durante a etapa de login no servlet (src/com/school/koren/controller/Login.java)
-            out.print(session.getAttribute("username"));
-        %>
-    </div>
+    <h4 class="user"><c:out value="${username}" /></h4>
     <div class="post">
         <a href="createPost.jsp">Fazer postagem</a>
-        <a href="userPosts.jsp">Postagens do user</a>
+        <a href="UserPosts">Postagens do usuario</a> <!-- chama o servlet que redireciona para o jsp -->
     </div>
     <div class="categorias">
         <a href="seteAdez.jsp">Sete A Dez Anos</a>

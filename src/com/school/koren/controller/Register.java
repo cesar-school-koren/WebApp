@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,7 +34,6 @@ public class Register extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -50,22 +50,28 @@ public class Register extends HttpServlet {
 		String password1 = request.getParameter("password1");
 		String password2 = request.getParameter("password2");
 		
-		if (password1.equals(password2)) {
-			Date agora = new Date();
-			AccountHome accountHome = new AccountHome();
-			Account conta = new Account();
-			conta.setUsername(username);
-			conta.setPassword(password1);
-			conta.setEmail(email);
-			conta.setCreationDate(agora);
-			accountHome.persist(conta);
-			accountHome.terminate();
-			response.sendRedirect("login.jsp");
+		if (password1.isEmpty() == false && password1.equals(password2)) {
+			try {
+				Date agora = new Date();
+				AccountHome accountHome = new AccountHome();
+				Account conta = new Account();
+				conta.setUsername(username);
+				conta.setPassword(password1);
+				conta.setEmail(email);
+				conta.setCreationDate(agora);
+				accountHome.persist(conta);
+				accountHome.terminate();
+				response.sendRedirect("login.jsp");
+			} catch (IOException e) {
+				writer.print("Usuario ja existe!");
+				RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
+				rd.forward(request, response);
+			}
 		}
 		else {
-			writer.println("senhas nao batem");
-			// alguma forma de mandar um print para o jsp
-			response.sendRedirect("register.jsp");
+			writer.print("Senhas nao batem!");
+			RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
+			rd.forward(request, response);
 		}
 		
 	}

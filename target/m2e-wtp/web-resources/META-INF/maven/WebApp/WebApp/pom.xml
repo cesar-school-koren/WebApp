@@ -102,6 +102,15 @@
 	    <artifactId>javax.persistence</artifactId>
 	    <version>2.2.1</version>
 	</dependency>
+<<<<<<< HEAD
+=======
+	<!-- https://mvnrepository.com/artifact/javax.servlet.jsp.jstl/jstl -->
+	<dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>jstl</artifactId>
+	    <version>1.2</version>
+	</dependency>
+>>>>>>> 7b61346e149ead6c1630df7bbc532fe471a09a99
 												    
   </dependencies>
   <build>

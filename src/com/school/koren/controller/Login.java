@@ -1,8 +1,10 @@
 package com.school.koren.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,7 +35,7 @@ public class Login extends HttpServlet {
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 	}
 
 	/**
@@ -42,6 +44,9 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		
+		PrintWriter out = response.getWriter();
+		response.setContentType("text/html");
 		
 		String username = request.getParameter("username").trim();
 		String password = request.getParameter("password");
@@ -60,10 +65,16 @@ public class Login extends HttpServlet {
 				response.sendRedirect("homeLoggedIn.jsp");
 			}else {
 				System.out.println("Senha errada!");
+				out.print("Senha errada!");
+				RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+				rd.include(request, response);
 			}
 
-		} catch (Exception e) {
-			// TODO: handle exception
+		} catch (IOException e) {
+			System.out.println("Usuario nao existe!");
+			out.print("Usuario nao existe!");
+			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+			rd.include(request, response);
 		}
 	}
 
