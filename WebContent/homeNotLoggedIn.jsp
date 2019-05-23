@@ -11,7 +11,7 @@
     <a href="login.jsp">Login</a>
     <a href="register.jsp">Register</a>
     <div class="categorias">
-        <a href="seteAdez.jsp">Sete A Dez Anos</a>
+        <a href="zeroAdois.jsp">Zero A Dois Anos</a>
     </div>
     <h2 class="homePageTitle">Home Page</h2>
 </body>

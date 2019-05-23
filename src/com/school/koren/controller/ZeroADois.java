@@ -20,10 +20,10 @@ import com.school.PostHome;
 /**
  * Servlet implementation class SeteADez
  */
-@WebServlet("/SeteADez")
+@WebServlet("/ZeroADois")
 public class ZeroADois extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	String page="seteAdez.jsp";
+	String page="zeroAdois.jsp";
        
     /**
      * @see HttpServlet#HttpServlet()

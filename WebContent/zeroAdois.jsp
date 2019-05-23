@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta content="text/html; charset=UTF-8">
-<title>Sete a Dez Anos</title>
+<title>Zero a Dois Anos</title>
 <script>
 function onLoadSubmit() {
 	document.load.submit();
@@ -10,7 +10,7 @@ function onLoadSubmit() {
 </script>
 </head>
 <body onload = "onLoadSubmit()">
-	<form action="SeteADez" method="post" name="load">
+	<form action="ZeroADois" method="post" name="load">
 	</form>
 </body>
 </html>
