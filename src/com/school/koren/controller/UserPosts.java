@@ -2,7 +2,9 @@ package com.school.koren.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -59,6 +61,15 @@ public class UserPosts extends HttpServlet {
 			List<Post> postagens = new ArrayList<>();
 			
 			for (Post postagem : postHome.findByExample(post)) {
+				postagens.add(postagem);
+			}
+			
+			
+//			conta = accountHome.findByExample(conta).get(0);
+//			
+//			List<Post> postagens = new ArrayList<>();
+			
+			for (Post postagem : conta.getPosts()) {
 				postagens.add(postagem);
 			}
 			
