@@ -22,7 +22,7 @@
 				<div>
 					<hr>
 					<h3>
-						<a href="ShowPost">
+						<a href="post.jsp">
 							<c:out value="${post.getTitle()}" />
 							<%
 								 session.setAttribute("post", pageContext.getAttribute("post"));
