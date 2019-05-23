@@ -12,6 +12,6 @@
     <a href="UserPosts">Posts</a>
     <a href="logout.jsp">Logout</a>
     <h1 class="titulo"><c:out value="${post.getTitle()}" /></h1>
-    <p class="text"><c:out value="${post.getTetx()}" /></p>
+    <p class="text"><c:out value="${post.getText()}" /></p>
 </body>
 </html>
