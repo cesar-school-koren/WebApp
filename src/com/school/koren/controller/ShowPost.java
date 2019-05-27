@@ -39,22 +39,24 @@ public class ShowPost extends HttpServlet {
 		
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter(); 
+		HttpSession session = request.getSession();
 		
 		int id = new Integer(request.getParameter("id"));
 		
+		CommentaryHome commentaryHome = new CommentaryHome();
 		PostHome postHome = new PostHome();
 		Post post = postHome.findById(id);
+		session.setAttribute("post", post);
 		
 		try {
-			HttpSession session = request.getSession();
-			CommentaryHome commentaryHome = new CommentaryHome();
+			// Pega lista dos comentários atuais
 			Commentary exemplo = new Commentary();
 			exemplo.setPostId(post);
-			List<Commentary> comentarios = commentaryHome.findByExample(exemplo);
-						
-			session.setAttribute("post", post);
-			session.setAttribute("commentaries", comentarios);
+			List<Commentary> comentarios = commentaryHome.findByExample(exemplo);	
 			
+			// Escreve a sessão comentarios existente
+			session.setAttribute("comentarios", comentarios);
+
 			response.sendRedirect(response.encodeURL("post.jsp"));
 			
 		} catch (IOException e) {
