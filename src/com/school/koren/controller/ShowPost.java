@@ -1,7 +1,7 @@
 package com.school.koren.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.school.Commentary;
+import com.school.CommentaryHome;
 import com.school.Post;
+import com.school.PostHome;
 
 /**
  * Servlet implementation class ShowPost
@@ -35,21 +37,30 @@ public class ShowPost extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		HttpSession session = request.getSession(false);
-		Post post = (Post) session.getAttribute("post");
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter(); 
+		
+		int id = new Integer(request.getParameter("id"));
+		
+		PostHome postHome = new PostHome();
+		Post post = postHome.findById(id);
 		
 		try {
-			List<Commentary> comentarios = new ArrayList<>();
+			HttpSession session = request.getSession();
+			CommentaryHome commentaryHome = new CommentaryHome();
+			Commentary exemplo = new Commentary();
+			exemplo.setPostId(post);
+			List<Commentary> comentarios = commentaryHome.findByExample(exemplo);
+						
+			session.setAttribute("post", post);
+			session.setAttribute("commentaries", comentarios);
 			
-			for (Commentary commentary : post.getCommentaries()) {
-				comentarios.add(commentary);
-			}
-			
-			request.setAttribute("commentaries", comentarios);
-			request.getRequestDispatcher("/post.jsp").forward(request, response);
+			response.sendRedirect(response.encodeURL("post.jsp"));
 			
 		} catch (IOException e) {
-			// TODO: handle exception
+			e.printStackTrace();
+			out.println("Postagem sem comentários");
+			response.sendRedirect(response.encodeURL("post.jsp")); 
 		}
 	}
 

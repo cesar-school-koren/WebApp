@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title><c:out value="${post.getTitle()}" /></title>
+    <title><c:out value="${sessionScope.post.getTitle()}" /></title>
 </head>
 <body>
     <a href="homeLoggedIn.jsp">Home</a>
@@ -13,9 +13,9 @@
     <a href="logout.jsp">Logout</a>
     <!-- <h1 class="titulo"><c:out value="${post.getTitle()}" /></h1>
     <p class="text"><c:out value="${post.getText()}" /></p> -->
-	<h3>${post.getTitle()}</h3>
-	<p><b>Autor:</b> <c:out value="${post.getAccountId().getUsername()}" /></p>
-    <p><b>Conteúdo:</b> <c:out value="${post.getText()}" /></p>
+	<h3>${sessionScope.post.getTitle()}</h3>
+	<p><b>Autor:</b> <c:out value="${sessionScope.post.getAccountId().getUsername()}" /></p>
+    <p><b>Conteúdo:</b> <c:out value="${sessionScope.post.getText()}" /></p>
 		
 	<h2>Comentários</h2>
 	<c:forEach var="comentario" items="${sessionScope.comentarios}">
@@ -23,7 +23,7 @@
 	</c:forEach>
 	<br>
     <form action="<c:url value='CommentPost'/>" method="post">
-    	<input type="hidden" name="id" value="${post.getPostId()}" />
+    	<input type="hidden" name="id" value="${sessionScope.post.getPostId()}" />
 		Comentar: <br><textarea name="conteudo" rows="4" cols="50" required></textarea><br><br>
 		<button type="submit" class="btn">Comentar</button>
 	</form>	
