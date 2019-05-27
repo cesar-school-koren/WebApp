@@ -14,6 +14,7 @@
     <!-- <h1 class="titulo"><c:out value="${post.getTitle()}" /></h1>
     <p class="text"><c:out value="${post.getText()}" /></p> -->
 	<h3>${sessionScope.post.getTitle()}</h3>
+	<p><b>Tema:</b> <c:out value="${sessionScope.post.getTags()}" /></p>
 	<p><b>Autor:</b> <c:out value="${sessionScope.post.getAccountId().getUsername()}" /></p>
     <p><b>Conteúdo:</b> <c:out value="${sessionScope.post.getText()}" /></p>
 		

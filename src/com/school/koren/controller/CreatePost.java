@@ -62,6 +62,12 @@ public class CreatePost extends HttpServlet {
 		Account conta = new Account();  // instancia objeto Account
 		AccountHome accountHome = new AccountHome(); // instancia objeto AccountDAO
 		CategoryHome categoryHome = new CategoryHome(); // instancia objeto CategoryDAO
+		List<Tag> tags = new ArrayList<Tag>(); // instancia uma lista de enum Tag
+		
+		// pega array de tags selecionadas
+		String[] tagsSelected = request.getParameterValues("tags");
+		for(int i = 0; i < tagsSelected.length; i++)
+			tags.add(Tag.valueOf(tagsSelected[i]));
 		
 		conta.setUsername(username);  
 		
@@ -69,10 +75,7 @@ public class CreatePost extends HttpServlet {
 		post.setAccountId(accountHome.findByExample(conta).get(0));
 		post.setCategoryId(categoryHome.findById(1));
 		post.setCreationDate(agora);
-		
-		// pega lista de tags e atribui ao Post
-		List<Tag> tags = new ArrayList<Tag>();
-		tags.add(Tag.EDUCACAO);
+
 		
 		// set o resto dos atributos
 		post.setTags(tags);
