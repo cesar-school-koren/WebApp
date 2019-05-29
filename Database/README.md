@@ -78,14 +78,14 @@ ALTER TABLE Koren.Commentary ADD CONSTRAINT "fk_Commentary_parent_id" FOREIGN KE
 REFERENCES Koren.Commentary ("commentary_id") ON DELETE CASCADE;
 
 INSERT INTO koren.category(
-            category_id, title)
-    VALUES (?, "Zero a Cinco");
+            title)
+    VALUES ('Zero a Cinco');
 
 INSERT INTO koren.category(
-            category_id, title)
-    VALUES (?, "Cinco a Dez");
+            title)
+    VALUES ('Cinco a Dez');
 
 INSERT INTO koren.category(
-            category_id, title)
-    VALUES (?, "Dez a Quinze");
+            title)
+    VALUES ('Dez a Quinze');
 ~~~
