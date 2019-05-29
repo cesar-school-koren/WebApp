@@ -13,6 +13,11 @@
     <a href="logout.jsp">Logout</a>
     <!-- <h1 class="titulo"><c:out value="${post.getTitle()}" /></h1>
     <p class="text"><c:out value="${post.getText()}" /></p> -->
+    <c:if test="${post.getAccountId().getUsername() == username}">
+		<form action="DeletePost" method="post">
+			<button type="submit" class="btn">Deletar post</button>
+		</form>
+    </c:if>
 	<h3>${sessionScope.post.getTitle()}</h3>
 	<p><b>Tema:</b> <c:out value="${sessionScope.post.getTags()}" /></p>
 	<p><b>Autor:</b> <c:out value="${sessionScope.post.getAccountId().getUsername()}" /></p>
@@ -28,6 +33,5 @@
 		Comentar: <br><textarea name="conteudo" rows="4" cols="50" required></textarea><br><br>
 		<button type="submit" class="btn">Comentar</button>
 	</form>	
-</body>
 </body>
 </html>
