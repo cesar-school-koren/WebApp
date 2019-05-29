@@ -60,7 +60,7 @@ public class Post implements java.io.Serializable {
 	private Set<Commentary> commentaries;
 
 	public enum Tag {
-		SAUDE, EDUCACAO, ARTIGO, DUVIDA;
+		SAUDE, EDUCACAO, SOCIAL, AUTONOMIA;
 	}
 	
 	public Post() {

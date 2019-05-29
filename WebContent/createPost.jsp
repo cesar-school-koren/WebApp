@@ -16,8 +16,8 @@
                      <select multiple class="select-checkbox" name="tags">
                      	<option value="EDUCACAO">Educação</option>
                      	<option value="SAUDE">Saúde</option>
-                     	<option value="ARTIGO">Artigo</option>
-                     	<option value="DUVIDA">Dúvida</option>
+                     	<option value="SOCIAL">Social</option>
+                     	<option value="Autonomia">Autonomia</option>
                      </select>
                      <input type="submit" value="enviar">
         </pre>

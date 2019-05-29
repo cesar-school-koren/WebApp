@@ -25,19 +25,19 @@
 		
 	<h2>Comentários</h2>
 	<c:forEach var="comentario" items="${sessionScope.comentarios}">
-  		<p>Autor: <c:out value = "${comentario.getAccountId().getUsername()}" /> | 
-  			<form action="<c:url value='AnswerComment'/>" method="post">
-  				<input type="hidden" name="postId" value="${sessionScope.post.getPostId()}" />
-  				<input type="hidden" name="commentId" value="${comentario.getPostId()}" />
-  				<button type="submit" class="btn">Responder</button>
-			</form>	
-  		</p>
+  		<p><b>Autor:</b> <c:out value = "${comentario.getAccountId().getUsername()}" /></p>
   		<p><c:out value= "${comentario.getText()}" /> </p>
+  		<form action="<c:url value='AnswerComment'/>" method="post">
+  			<input type="hidden" name="postId" value="${sessionScope.post.getPostId()}" />
+  			<br>Comentar: <br><textarea name="conteudo" rows="1" cols="20" required></textarea><br><br>
+  			<input type="hidden" name="commentId" value="${comentario.getCommentaryId()}" />
+  			<button type="submit" class="btn">Responder</button>
+		</form>
 	</c:forEach>
 	<br>
     <form action="<c:url value='CommentPost'/>" method="post">
     	<input type="hidden" name="id" value="${sessionScope.post.getPostId()}" />
-		Comentar: <br><textarea name="conteudo" rows="4" cols="50" required></textarea><br><br>
+		<br>Comentar: <br><textarea name="conteudo" rows="4" cols="50" required></textarea><br><br>
 		<button type="submit" class="btn">Comentar</button>
 	</form>	
 </body>
