@@ -22,10 +22,15 @@
 	<p><b>Tema:</b> <c:out value="${sessionScope.post.getTags()}" /></p>
 	<p><b>Autor:</b> <c:out value="${sessionScope.post.getAccountId().getUsername()}" /></p>
     <p><b>Conteúdo:</b> <c:out value="${sessionScope.post.getText()}" /></p>
-		
+	<!-- testar ja que aqui no meu pc ta dando erro no hibernate -->	
 	<h2>Comentários</h2>
 	<c:forEach var="comentario" items="${sessionScope.comentarios}">
-  		<p><c:out value= "${comentario.getText()}" /> | Autor: <c:out value = "${comentario.getAccountId().getUsername()}" /></p>
+  		<p>
+			<c:out value= "${comentario.getText()}" /> | Autor: <c:out value = "${comentario.getAccountId().getUsername()}" />
+		</p>
+		<form action="DeleteComment" method="POST" class="btn">
+			<button type="submit">Deletar Comentario</button>
+		</form> 
 	</c:forEach>
 	<br>
     <form action="<c:url value='CommentPost'/>" method="post">
