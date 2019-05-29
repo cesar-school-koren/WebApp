@@ -102,23 +102,6 @@ public class AccountHome {
 			throw re;
 		}
 	}
-
-	public void update(Account detachedInstance) {
-		log.debug("updating Account instance");
-		try {
-			Session session = sessionFactory.getCurrentSession();
-			session.beginTransaction();
-			session.update(detachedInstance);;
-			session.getTransaction().commit();
-			session.close();
-			log.debug("update successful");
-			return;
-		} catch (RuntimeException re) {
-			log.error("update failed", re);
-			throw re;
-		}
-	}
-
 	
 	public Account findById(int id) {
 		log.debug("getting Account instance with id: " + id);
