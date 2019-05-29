@@ -17,14 +17,16 @@
 		<form action="DeletePost" method="post">
 			<button type="submit" class="btn">Deletar post</button>
 		</form>
+		<hr>
     </c:if>
 	<h3>${sessionScope.post.getTitle()}</h3>
 	<p><b>Tema:</b> <c:out value="${sessionScope.post.getTags()}" /></p>
 	<p><b>Autor:</b> <c:out value="${sessionScope.post.getAccountId().getUsername()}" /></p>
     <p><b>Conteúdo:</b> <c:out value="${sessionScope.post.getText()}" /></p>
-		
+	<!-- testar ja que aqui no meu pc ta dando erro no hibernate -->	
 	<h2>Comentários</h2>
 	<c:forEach var="comentario" items="${sessionScope.comentarios}">
+		<div style="margin-left:${80*comentario.getDepth()}px; width:auto; border-left: 1px dashed #000; padding-left:5px;">
   		<p><b>Autor:</b> <c:out value = "${comentario.getAccountId().getUsername()}" /></p>
   		<p><c:out value= "${comentario.getText()}" /> </p>
   		<form action="<c:url value='AnswerComment'/>" method="post">
@@ -33,6 +35,10 @@
   			<input type="hidden" name="commentId" value="${comentario.getCommentaryId()}" />
   			<button type="submit" class="btn">Responder</button>
 		</form>
+		<form action="DeleteComment" method="POST">
+			<button type="submit" name="commentId" value="${comentario.getCommentaryId()}" class="btn">Deletar comentario</button>
+		</form> 
+		</div>
 	</c:forEach>
 	<br>
     <form action="<c:url value='CommentPost'/>" method="post">

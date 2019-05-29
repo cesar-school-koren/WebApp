@@ -1,6 +1,13 @@
 package com.school.koren.model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -14,7 +21,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -145,5 +151,47 @@ public class Commentary implements java.io.Serializable {
 	public void setCommentaries(Set<Commentary> commentaries) {
 		this.commentaries = commentaries;
 	}
+	
+	public static List<Commentary> sortComments(List<Commentary> lista){
+		final Commentary nullPlaceholder = new Commentary();
+		Map<Object, List<Commentary>> byParent = lista.stream()
+		         .collect(Collectors.groupingBy(obj -> 
+		           (obj.getParentId() == null ? nullPlaceholder : obj.getParentId())
+		           , Collectors.toList()));
 
+		List<Commentary> ordered = new ArrayList<>();
+		Queue<Commentary> processor = new LinkedList<>();
+		byParent.get(nullPlaceholder).forEach(processor::add);
+		while (!processor.isEmpty()) {
+			Commentary tmp = processor.poll();
+		    byParent.getOrDefault(tmp, Collections.emptyList())
+		    .forEach(processor::add);
+		    ordered.add(tmp);
+		}
+		lista.clear();
+		lista.addAll(ordered);
+		    
+		List<Commentary> sortedLista = new ArrayList<>();
+		Commentary[] array = lista.stream().toArray(Commentary[]::new);
+		Commentary temp = new Commentary();
+		
+		for (int i = 0; i < array.length; i++) {
+			int counter = 1;
+			Commentary pai = array[i];
+			for (int j = i+1; j < array.length; j++) {
+				if (array[j].getParentId() == pai) {
+					temp = array[j];
+					for(int k = j; k>=i+counter; k--) {
+						array[k] = array[k-1];
+					}
+					array[i+counter] = temp;
+					counter = counter + 1;
+			    }
+			}
+		}
+		
+
+		sortedLista = Arrays.asList(array);   
+		return sortedLista;
+	}
 }

@@ -2,6 +2,7 @@ package com.school.koren.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -40,8 +41,14 @@ public class ShowPost extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter(); 
 		HttpSession session = request.getSession();
+		int id;
 		
-		int id = new Integer(request.getParameter("id"));
+		if (request.getParameter("id") != null) {
+			id = new Integer(request.getParameter("id"));
+		}
+		else {
+			id = ((Post) session.getAttribute("post")).getPostId(); 
+		}
 		
 		CommentaryHome commentaryHome = new CommentaryHome();
 		PostHome postHome = new PostHome();
@@ -49,19 +56,21 @@ public class ShowPost extends HttpServlet {
 		session.setAttribute("post", post);
 		
 		try {
-			// Pega lista dos coment�rios atuais
+			// Pega lista dos comentarios atuais
 			Commentary exemplo = new Commentary();
 			exemplo.setPostId(post);
 			List<Commentary> comentarios = commentaryHome.findByExample(exemplo);	
 			
-			// Escreve a sess�o comentarios existente
+			comentarios = Commentary.sortComments(comentarios);
+			
+			// Escreve a sessao de comentarios existente
 			session.setAttribute("comentarios", comentarios);
 
 			response.sendRedirect(response.encodeURL("post.jsp"));
 			
 		} catch (IOException e) {
 			e.printStackTrace();
-			out.println("Postagem sem coment�rios");
+			out.println("Postagem sem comentarios");
 			response.sendRedirect(response.encodeURL("post.jsp")); 
 		}
 	}

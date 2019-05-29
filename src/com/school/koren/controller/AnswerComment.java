@@ -87,6 +87,8 @@ public class AnswerComment extends HttpServlet {
 			exemplo.setPostId(post);
 			List<Commentary> comentarios = commentaryHome.findByExample(exemplo);	
 			
+			comentarios = Commentary.sortComments(comentarios);
+			
 			//verificar - sobrescreve a sess�o comentarios existente
 			session.setAttribute("comentarios", comentarios);		
 			response.sendRedirect(response.encodeURL("post.jsp"));			
