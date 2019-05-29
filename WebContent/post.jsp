@@ -25,7 +25,14 @@
 		
 	<h2>Comentários</h2>
 	<c:forEach var="comentario" items="${sessionScope.comentarios}">
-  		<p><c:out value= "${comentario.getText()}" /> | Autor: <c:out value = "${comentario.getAccountId().getUsername()}" /></p>
+  		<p>Autor: <c:out value = "${comentario.getAccountId().getUsername()}" /> | 
+  			<form action="<c:url value='AnswerComment'/>" method="post">
+  				<input type="hidden" name="postId" value="${sessionScope.post.getPostId()}" />
+  				<input type="hidden" name="commentId" value="${comentario.getPostId()}" />
+  				<button type="submit" class="btn">Responder</button>
+			</form>	
+  		</p>
+  		<p><c:out value= "${comentario.getText()}" /> </p>
 	</c:forEach>
 	<br>
     <form action="<c:url value='CommentPost'/>" method="post">

@@ -17,7 +17,7 @@
         <a href="UserPosts">Postagens do usuario</a> <!-- chama o servlet que redireciona para o jsp -->
     </div>
     <div class="categorias">
-        <a href="ZeroACinco">Zero A Cinco Anos</a>
+        <a href="ZeroADois">Zero A Dois Anos</a>
     </div>
     <h2 class="homePageTitle">Home Page</h2>
 </body>
