@@ -40,8 +40,14 @@ public class ShowPost extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter(); 
 		HttpSession session = request.getSession();
+		int id;
 		
-		int id = new Integer(request.getParameter("id"));
+		if (request.getParameter("id") != null) {
+			id = new Integer(request.getParameter("id"));
+		}
+		else {
+			id = ((Post) session.getAttribute("post")).getPostId(); 
+		}
 		
 		CommentaryHome commentaryHome = new CommentaryHome();
 		PostHome postHome = new PostHome();

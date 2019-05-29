@@ -17,6 +17,7 @@
 		<form action="DeletePost" method="post">
 			<button type="submit" class="btn">Deletar post</button>
 		</form>
+		<hr>
     </c:if>
 	<h3>${sessionScope.post.getTitle()}</h3>
 	<p><b>Tema:</b> <c:out value="${sessionScope.post.getTags()}" /></p>
@@ -28,8 +29,8 @@
   		<p>
 			<c:out value= "${comentario.getText()}" /> | Autor: <c:out value = "${comentario.getAccountId().getUsername()}" />
 		</p>
-		<form action="DeleteComment" method="POST" class="btn">
-			<button type="submit">Deletar Comentario</button>
+		<form action="DeleteComment" method="POST">
+			<button type="submit" name="commentId" value="${comentario.getCommentaryId()}" class="btn">Deletar comentario</button>
 		</form> 
 	</c:forEach>
 	<br>

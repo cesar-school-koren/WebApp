@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,12 +49,16 @@ public class DeleteComment extends HttpServlet {
 		
 		HttpSession session = request.getSession(false);
 		
+		System.out.println("vou entrar no try");
 		try {
-			int commId = (int) session.getAttribute("commentId");
+			int commId = Integer.parseInt(request.getParameter("commentId"));
+			System.out.println(commId);
 			CommentaryHome commentaryHome= new CommentaryHome();
 			Commentary commentary = commentaryHome.findById(commId);
+			System.out.println(commentary.getAccountId());
 			commentaryHome.delete(commentary);
-			response.sendRedirect("post.jsp");
+			ServletContext context = getServletContext();
+			context.getRequestDispatcher("/ShowPost").forward(request, response);
 		} catch (IOException e) {
 			writer.print("Houve um problema ao deletar o comentario!");
 			RequestDispatcher rd = request.getRequestDispatcher("post.jsp");
