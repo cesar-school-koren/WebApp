@@ -1,4 +1,4 @@
-package com.school;
+package com.school.model;
 
 import java.util.Date;
 import java.util.Set;

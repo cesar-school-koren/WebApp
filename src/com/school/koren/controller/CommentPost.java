@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.school.Account;
-import com.school.AccountHome;
-import com.school.Commentary;
-import com.school.CommentaryHome;
-import com.school.Post;
-import com.school.PostHome;
+import com.school.dao.AccountHome;
+import com.school.dao.CommentaryHome;
+import com.school.dao.PostHome;
+import com.school.model.Account;
+import com.school.model.Commentary;
+import com.school.model.Post;
 
 /**
  * Servlet implementation class CommentPost
@@ -54,10 +54,10 @@ public class CommentPost extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		
 		String texto = request.getParameter("conteudo");	// pega o texto do comentario
-		String username = session.getAttribute("username").toString(); // pegar a username do usuário que vai comentar
-		int postId = Integer.parseInt(request.getParameter("id")); // pegar o id do post onde está sendo feito o comentário
+		String username = session.getAttribute("username").toString(); // pegar a username do usuï¿½rio que vai comentar
+		int postId = Integer.parseInt(request.getParameter("id")); // pegar o id do post onde estï¿½ sendo feito o comentï¿½rio
 		
-		//Operação para postar comentário
+		//Operaï¿½ï¿½o para postar comentï¿½rio
 		Date agora = new Date(); // pega data
 		Post post = new Post(); // instancia objeto Post
 		PostHome postHome = new PostHome();  // instancia objeto PostDAO
@@ -67,11 +67,11 @@ public class CommentPost extends HttpServlet {
 		CommentaryHome commentaryHome = new CommentaryHome(); // instancia objeto CommentaryHome	
 				
 		try {
-			post = postHome.findById(postId); // pega o post onde está sendo feito o comentário
+			post = postHome.findById(postId); // pega o post onde estï¿½ sendo feito o comentï¿½rio
 			conta.setUsername(username); // seta o username para poder pegar a conta por ele
-			conta = accountHome.findByExample(conta).get(0); // pega o usuário que está fazendo o comentário
+			conta = accountHome.findByExample(conta).get(0); // pega o usuï¿½rio que estï¿½ fazendo o comentï¿½rio
 			
-			// Set atributos do comentário
+			// Set atributos do comentï¿½rio
 			comentario.setAccountId(conta);
 			comentario.setPostId(post);
 			comentario.setCreationDate(agora);
@@ -80,15 +80,15 @@ public class CommentPost extends HttpServlet {
 			// Persiste o comentario para o banco de dados
 			commentaryHome.persist(comentario);
 			
-			// Pega lista dos comentários atuais
+			// Pega lista dos comentï¿½rios atuais
 			Commentary exemplo = new Commentary();
 			exemplo.setPostId(post);
 			List<Commentary> comentarios = commentaryHome.findByExample(exemplo);	
 			
-			//verificar - sobrescreve a sessão comentarios existente
+			//verificar - sobrescreve a sessï¿½o comentarios existente
 			session.setAttribute("comentarios", comentarios);		
 			response.sendRedirect(response.encodeURL("post.jsp"));			
-		} catch (Exception e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 			out.println("Por favor, preencha os campos corretamente.");
 		}

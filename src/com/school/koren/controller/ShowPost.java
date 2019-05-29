@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.school.Commentary;
-import com.school.CommentaryHome;
-import com.school.Post;
-import com.school.PostHome;
+import com.school.dao.CommentaryHome;
+import com.school.dao.PostHome;
+import com.school.model.Commentary;
+import com.school.model.Post;
 
 /**
  * Servlet implementation class ShowPost
@@ -49,19 +49,19 @@ public class ShowPost extends HttpServlet {
 		session.setAttribute("post", post);
 		
 		try {
-			// Pega lista dos comentários atuais
+			// Pega lista dos comentï¿½rios atuais
 			Commentary exemplo = new Commentary();
 			exemplo.setPostId(post);
 			List<Commentary> comentarios = commentaryHome.findByExample(exemplo);	
 			
-			// Escreve a sessão comentarios existente
+			// Escreve a sessï¿½o comentarios existente
 			session.setAttribute("comentarios", comentarios);
 
 			response.sendRedirect(response.encodeURL("post.jsp"));
 			
 		} catch (IOException e) {
 			e.printStackTrace();
-			out.println("Postagem sem comentários");
+			out.println("Postagem sem comentï¿½rios");
 			response.sendRedirect(response.encodeURL("post.jsp")); 
 		}
 	}

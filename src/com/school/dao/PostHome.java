@@ -1,4 +1,4 @@
-package com.school;
+package com.school.dao;
 
 import java.util.List;
 
@@ -14,6 +14,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
+
+import com.school.model.Post;
 
 
 public class PostHome {

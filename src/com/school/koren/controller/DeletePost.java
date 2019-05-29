@@ -2,7 +2,6 @@ package com.school.koren.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,23 +11,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.school.dao.AccountHome;
-import com.school.dao.CategoryHome;
 import com.school.dao.PostHome;
 import com.school.model.Post;
 
 /**
- * Servlet implementation class SeteADez
+ * Servlet implementation class DeletePost
  */
-@WebServlet("/ZeroADois")
-public class ZeroADois extends HttpServlet {
+@WebServlet("/DeletePost")
+public class DeletePost extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	String page="zeroAdois.jsp";
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ZeroADois() {
+    public DeletePost() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -46,32 +42,21 @@ public class ZeroADois extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
+		doGet(request, response);
 		
-		// aqui fazer a operação de checar no banco de dados
+		PrintWriter writer = response.getWriter();
+		
+		HttpSession session = request.getSession(false);
+		
 		try {
-			response.setContentType("text/html");
+			Post post = (Post) session.getAttribute("post");
 			PostHome postHome = new PostHome();
-			Post post = new Post();
-			CategoryHome categoryHome = new CategoryHome();
-			AccountHome accountHome = new AccountHome();
-			
-			post.setCategoryId(categoryHome.findById(1));;
-			
-			List<Post> lista = postHome.findByExample(post);
-			
-			HttpSession session = request.getSession();
-			session.setAttribute("data", lista);
-			
-			for(int i = 0; i < lista.size(); i++) {
-				out.println(
-						"Title: " + lista.get(i).getTitle() + "</br> createdBy: " + lista.get(i).getAccountId().getUsername());
-			}
-
-		} catch (Exception e) {
-			// TODO: handle exception
+			postHome.delete(post);
+			response.sendRedirect("homeLoggedIn.jsp");
+		} catch (IOException e) {
+			writer.print("Houve um problema ao deletar o post!");
+			RequestDispatcher rd = request.getRequestDispatcher("homeLoggedIn.jsp");
+			rd.include(request, response);
 		}
 	}
 

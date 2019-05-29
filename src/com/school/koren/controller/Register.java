@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.school.Account;
-import com.school.AccountHome;
+import com.school.dao.AccountHome;
+import com.school.model.Account;
 
 /**
  * Servlet implementation class Register
