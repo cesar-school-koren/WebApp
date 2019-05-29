@@ -76,7 +76,8 @@ public class CommentPost extends HttpServlet {
 			comentario.setPostId(post);
 			comentario.setCreationDate(agora);
 			comentario.setText(texto);
-			
+			comentario.setDepth(0);
+	
 			// Persiste o comentario para o banco de dados
 			commentaryHome.persist(comentario);
 			
