@@ -44,6 +44,9 @@ public class Account implements java.io.Serializable {
 	@Column(name = "last_login", nullable = true)
 	private Date lastLogin;
 	
+	@Column(nullable = false)
+	private Integer privilege;
+	
 	@OneToMany(mappedBy = "account_id", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Commentary> commentaries;
 	
@@ -53,15 +56,16 @@ public class Account implements java.io.Serializable {
 	public Account() {
 	}
 
-	public Account(int accountId, String username, String password, String email, Date creationDate) {
+	public Account(int accountId, String username, String password, String email, Date creationDate, Integer privilege) {
 		this.accountId = accountId;
 		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.creationDate = creationDate;
+		this.privilege = privilege;
 	}
 
-	public Account(int accountId, String username, String password, String email, Date creationDate, Date lastLogin,
+	public Account(int accountId, String username, String password, String email, Date creationDate, Date lastLogin, Integer privilege,
 			Commentary commentaries, Post posts) {
 		this.accountId = accountId;
 		this.username = username;
@@ -69,6 +73,7 @@ public class Account implements java.io.Serializable {
 		this.email = email;
 		this.creationDate = creationDate;
 		this.lastLogin = lastLogin;
+		this.privilege = privilege;
 		this.commentaries = Stream.of(commentaries).collect(Collectors.toSet());
 		this.commentaries.forEach(x -> x.setAccountId(this));
 		this.posts = Stream.of(posts).collect(Collectors.toSet());
@@ -121,6 +126,14 @@ public class Account implements java.io.Serializable {
 
 	public void setLastLogin(Date lastLogin) {
 		this.lastLogin = lastLogin;
+	}
+	
+	public Integer getPrivilege() {
+		return this.privilege;
+	}
+	
+	public void setPrivilege(Integer privilege) {
+		this.privilege = privilege;
 	}
 
 	public Set<Commentary> getCommentaries() {

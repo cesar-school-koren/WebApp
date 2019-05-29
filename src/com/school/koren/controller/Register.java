@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.school.koren.dao.AccountHome;
 import com.school.koren.model.Account;
+import com.school.koren.repository.AccountHome;
 
 /**
  * Servlet implementation class Register
@@ -59,6 +59,7 @@ public class Register extends HttpServlet {
 				conta.setPassword(password1);
 				conta.setEmail(email);
 				conta.setCreationDate(agora);
+				conta.setPrivilege(1);
 				accountHome.persist(conta);
 				accountHome.terminate();
 				response.sendRedirect("login.jsp");

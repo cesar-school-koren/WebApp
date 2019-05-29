@@ -1,4 +1,4 @@
-package com.school.koren.dao;
+package com.school.koren.repository;
 
 import java.util.List;
 

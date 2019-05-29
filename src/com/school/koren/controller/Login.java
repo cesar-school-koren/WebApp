@@ -2,6 +2,7 @@ package com.school.koren.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,8 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.school.koren.dao.AccountHome;
 import com.school.koren.model.Account;
+import com.school.koren.repository.AccountHome;
 
 
 /**
@@ -55,12 +56,15 @@ public class Login extends HttpServlet {
 		try {
 			AccountHome accountHome = new AccountHome();
 			Account conta = new Account();
+			Date agora = new Date();
 			conta.setUsername(username);
 			List<Account> lista = accountHome.findByExample(conta);
 			String contaSenha = lista.get(0).getPassword();
-			System.out.println(contaSenha);
+			
 			if(contaSenha.equals(password)) {
 				HttpSession session = request.getSession();
+				lista.get(0).setLastLogin(agora);
+				accountHome.merge(lista.get(0));
 				session.setAttribute("username", username);
 				response.sendRedirect("homeLoggedIn.jsp");
 			}else {

@@ -1,4 +1,4 @@
-package com.school.koren.dao;
+package com.school.koren.repository;
 
 import java.util.List;
 
@@ -15,12 +15,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
-import com.school.koren.model.Category;
+import com.school.koren.model.Account;
 
 
-public class CategoryHome {
+public class AccountHome {
 
-	private static final Log log = LogFactory.getLog(CategoryHome.class);
+	private static final Log log = LogFactory.getLog(AccountHome.class);
 
 	private final SessionFactory sessionFactory = getSessionFactory();
 
@@ -34,8 +34,9 @@ public class CategoryHome {
 		}
 	}
 
-	public void persist(Category transientInstance) {
-		log.debug("persisting Category instance");
+
+	public void persist(Account transientInstance) {
+		log.debug("persisting Account instance");
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
@@ -49,8 +50,8 @@ public class CategoryHome {
 		}
 	}
 
-	public void attachDirty(Category instance) {
-		log.debug("attaching dirty Category instance");
+	public void attachDirty(Account instance) {
+		log.debug("attaching dirty Account instance");
 		try {
 			sessionFactory.getCurrentSession().saveOrUpdate(instance);
 			log.debug("attach successful");
@@ -60,8 +61,8 @@ public class CategoryHome {
 		}
 	}
 
-	public void attachClean(Category instance) {
-		log.debug("attaching clean Category instance");
+	public void attachClean(Account instance) {
+		log.debug("attaching clean Account instance");
 		try {
 			sessionFactory.getCurrentSession().lock(instance, LockMode.NONE);
 			log.debug("attach successful");
@@ -71,8 +72,8 @@ public class CategoryHome {
 		}
 	}
 
-	public void delete(Category persistentInstance) {
-		log.debug("deleting Category instance");
+	public void delete(Account persistentInstance) {
+		log.debug("deleting Account instance");
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
@@ -86,12 +87,12 @@ public class CategoryHome {
 		}
 	}
 
-	public Category merge(Category detachedInstance) {
-		log.debug("merging Category instance");
+	public Account merge(Account detachedInstance) {
+		log.debug("merging Account instance");
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
-			Category result = (Category) session.merge(detachedInstance);
+			Account result = (Account) session.merge(detachedInstance);
 			session.getTransaction().commit();
 			session.close();
 			log.debug("merge successful");
@@ -102,13 +103,30 @@ public class CategoryHome {
 		}
 	}
 
-	public Category findById(int id) {
-		log.debug("getting Category instance with id: " + id);
+	public void update(Account detachedInstance) {
+		log.debug("updating Account instance");
+		try {
+			Session session = sessionFactory.getCurrentSession();
+			session.beginTransaction();
+			session.update(detachedInstance);;
+			session.getTransaction().commit();
+			session.close();
+			log.debug("update successful");
+			return;
+		} catch (RuntimeException re) {
+			log.error("update failed", re);
+			throw re;
+		}
+	}
+
+	
+	public Account findById(int id) {
+		log.debug("getting Account instance with id: " + id);
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
 			
-			Category instance = (Category) session.get(Category.class, id);
+			Account instance = (Account) session.get(Account.class, id);
 			if (instance == null) {
 				log.debug("get successful, no instance found");
 			} else {
@@ -122,25 +140,41 @@ public class CategoryHome {
 		}
 	}
 
-	public List<Category> findByExample(Category instance) {
-		log.debug("finding Category instance by example");
+	public List<Account> findByExample(Account instance) {
+		log.debug("finding Account instance by example");
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
 			CriteriaBuilder builder = session.getCriteriaBuilder();
-			CriteriaQuery<Category> criteria = builder.createQuery(Category.class);
-			Root<Category> root = criteria.from(Category.class);
+			CriteriaQuery<Account> criteria = builder.createQuery(Account.class);
+			Root<Account> root = criteria.from(Account.class);
 			
 			Predicate predicate = builder.and();
 			
 			//Replicar para todos os atributos
-			if(instance.getTitle() != null) {
-				predicate = builder.and(builder.equal(root.get("title"), instance.getTitle()));
+			if(instance.getUsername() != null) {
+				predicate = builder.and(builder.equal(root.get("username"), instance.getUsername()));
+			}
+			
+			if(instance.getEmail() != null) {
+				predicate = builder.and(builder.equal(root.get("email"), instance.getEmail()));
+			}
+			
+			if(instance.getCreationDate() != null) {
+				predicate = builder.and(builder.equal(root.get("creation_date"), instance.getCreationDate()));
+			}
+			
+			if(instance.getLastLogin() != null) {
+				predicate = builder.and(builder.equal(root.get("last_login"), instance.getLastLogin()));
+			}
+			
+			if(instance.getPrivilege() != null) {
+				predicate = builder.and(builder.equal(root.get("privilege"), instance.getPrivilege()));
 			}
 			
 			criteria.select(root).where(predicate);
-			Query<Category> q = session.createQuery(criteria);
-			List<Category> results = q.getResultList();
+			Query<Account> q = session.createQuery(criteria);
+			List<Account> results = q.getResultList();
 			log.debug("find by example successful, result size: " + results.size());
 			session.close();
 			return results;

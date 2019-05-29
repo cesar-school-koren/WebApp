@@ -1,4 +1,4 @@
-package com.school.koren.dao;
+package com.school.koren.repository;
 
 import java.util.List;
 
@@ -152,6 +152,10 @@ public class CommentaryHome {
 			
 			if(instance.getText() != null) {
 				predicate = builder.and(builder.equal(root.get("text"), instance.getText()));
+			}
+			
+			if(instance.getDepth() != null) {
+				predicate = builder.and(builder.equal(root.get("depth"), instance.getDepth()));
 			}
 			
 			criteria.select(root).where(predicate);

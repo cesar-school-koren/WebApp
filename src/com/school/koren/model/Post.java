@@ -48,12 +48,12 @@ public class Post implements java.io.Serializable {
 	private String title;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "creation_date", nullable = false)
+	@Column(name = "creation_date", nullable = false, updatable = false)
 	private Date creationDate;
 	
 	@Column(name = "tags", columnDefinition="text[]")
 	@Type(type = "com.karakays.hibernate.array.EnumArrayType",
-    parameters = { @Parameter(name="enumClass", value="com.school.Post$Tag") })
+    parameters = { @Parameter(name="enumClass", value="com.school.koren.model.Post$Tag") })
 	private List<Tag> tags;
 	
 	@OneToMany(mappedBy = "post_id", cascade = CascadeType.ALL, orphanRemoval = true)

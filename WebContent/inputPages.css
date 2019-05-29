@@ -19,3 +19,13 @@ input[name=texto]{
     padding: 2px 2px 2px 2px;
     resize: none;
 }
+
+.select-checkbox option::before {
+  content: "\2610";
+  width: 1.3em;
+  text-align: center;
+  display: inline-block;
+}
+.select-checkbox option:checked::before {
+  content: "\2611";
+}

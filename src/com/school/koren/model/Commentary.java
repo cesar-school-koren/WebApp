@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -44,8 +45,11 @@ public class Commentary implements java.io.Serializable {
 	@Column(nullable = false)
 	private String text;
 	
+	@Column(nullable = false)
+	private Integer depth;
+	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "creation_date", nullable = false)
+	@Column(name = "creation_date", nullable = false, updatable = false)
 	private Date creationDate;
 	
 	@OneToMany(mappedBy = "parent_id", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -54,28 +58,30 @@ public class Commentary implements java.io.Serializable {
 	public Commentary() {
 	}
 
-	public Commentary(int commentaryId, Account account_id, Commentary parent_id, Post post_id, String text,
+	public Commentary(int commentaryId, Account account_id, Commentary parent_id, Post post_id, String text, Integer depth,
 			Date creationDate) {
 		this.commentaryId = commentaryId;
 		this.account_id = account_id;
 		this.parent_id = parent_id;
 		this.post_id = post_id;
 		this.text = text;
+		this.depth = depth;
 		this.creationDate = creationDate;
 	}
 
-	public Commentary(int commentaryId, Account account_id, Commentary parent_id, Post post_id, String text,
+	public Commentary(int commentaryId, Account account_id, Commentary parent_id, Post post_id, String text, Integer depth,
 			Date creationDate, Commentary commentaries) {
 		this.commentaryId = commentaryId;
 		this.account_id = account_id;
 		this.parent_id = parent_id;
 		this.post_id = post_id;
 		this.text = text;
+		this.depth = depth;
 		this.creationDate = creationDate;
 		this.commentaries = Stream.of(commentaries).collect(Collectors.toSet());
 		this.commentaries.forEach(x -> x.setParentId(this));
 	}
-
+	
 	public int getCommentaryId() {
 		return this.commentaryId;
 	}
@@ -114,6 +120,14 @@ public class Commentary implements java.io.Serializable {
 
 	public void setText(String text) {
 		this.text = text;
+	}
+
+	public Integer getDepth() {
+		return depth;
+	}
+
+	public void setDepth(Integer depth) {
+		this.depth = depth;
 	}
 
 	public Date getCreationDate() {
