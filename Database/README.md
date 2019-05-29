@@ -76,4 +76,16 @@ REFERENCES Koren.Post ("post_id") ON DELETE CASCADE;
 
 ALTER TABLE Koren.Commentary ADD CONSTRAINT "fk_Commentary_parent_id" FOREIGN KEY("parent_id")
 REFERENCES Koren.Commentary ("commentary_id") ON DELETE CASCADE;
+
+INSERT INTO koren.category(
+            title)
+    VALUES ('Zero a Cinco');
+
+INSERT INTO koren.category(
+            title)
+    VALUES ('Cinco a Dez');
+
+INSERT INTO koren.category(
+            title)
+    VALUES ('Dez a Quinze');
 ~~~
