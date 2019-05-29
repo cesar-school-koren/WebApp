@@ -1,4 +1,4 @@
-package com.school.dao;
+package com.school.koren.dao;
 
 import java.util.List;
 
@@ -15,12 +15,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
-import com.school.model.Category;
+import com.school.koren.model.Commentary;
 
 
-public class CategoryHome {
+public class CommentaryHome {
 
-	private static final Log log = LogFactory.getLog(CategoryHome.class);
+	private static final Log log = LogFactory.getLog(CommentaryHome.class);
 
 	private final SessionFactory sessionFactory = getSessionFactory();
 
@@ -34,8 +34,8 @@ public class CategoryHome {
 		}
 	}
 
-	public void persist(Category transientInstance) {
-		log.debug("persisting Category instance");
+	public void persist(Commentary transientInstance) {
+		log.debug("persisting Commentary instance");
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
@@ -49,8 +49,8 @@ public class CategoryHome {
 		}
 	}
 
-	public void attachDirty(Category instance) {
-		log.debug("attaching dirty Category instance");
+	public void attachDirty(Commentary instance) {
+		log.debug("attaching dirty Commentary instance");
 		try {
 			sessionFactory.getCurrentSession().saveOrUpdate(instance);
 			log.debug("attach successful");
@@ -60,8 +60,8 @@ public class CategoryHome {
 		}
 	}
 
-	public void attachClean(Category instance) {
-		log.debug("attaching clean Category instance");
+	public void attachClean(Commentary instance) {
+		log.debug("attaching clean Commentary instance");
 		try {
 			sessionFactory.getCurrentSession().lock(instance, LockMode.NONE);
 			log.debug("attach successful");
@@ -71,8 +71,8 @@ public class CategoryHome {
 		}
 	}
 
-	public void delete(Category persistentInstance) {
-		log.debug("deleting Category instance");
+	public void delete(Commentary persistentInstance) {
+		log.debug("deleting Commentary instance");
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
@@ -86,12 +86,12 @@ public class CategoryHome {
 		}
 	}
 
-	public Category merge(Category detachedInstance) {
-		log.debug("merging Category instance");
+	public Commentary merge(Commentary detachedInstance) {
+		log.debug("merging Commentary instance");
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
-			Category result = (Category) session.merge(detachedInstance);
+			Commentary result = (Commentary) session.merge(detachedInstance);
 			session.getTransaction().commit();
 			session.close();
 			log.debug("merge successful");
@@ -102,13 +102,13 @@ public class CategoryHome {
 		}
 	}
 
-	public Category findById(int id) {
-		log.debug("getting Category instance with id: " + id);
+	public Commentary findById(int id) {
+		log.debug("getting Commentary instance with id: " + id);
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
 			
-			Category instance = (Category) session.get(Category.class, id);
+			Commentary instance = (Commentary) session.get(Commentary.class, id);
 			if (instance == null) {
 				log.debug("get successful, no instance found");
 			} else {
@@ -122,25 +122,41 @@ public class CategoryHome {
 		}
 	}
 
-	public List<Category> findByExample(Category instance) {
-		log.debug("finding Category instance by example");
+	public List<Commentary> findByExample(Commentary instance) {
+		log.debug("finding Commentary instance by example");
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
 			CriteriaBuilder builder = session.getCriteriaBuilder();
-			CriteriaQuery<Category> criteria = builder.createQuery(Category.class);
-			Root<Category> root = criteria.from(Category.class);
+			CriteriaQuery<Commentary> criteria = builder.createQuery(Commentary.class);
+			Root<Commentary> root = criteria.from(Commentary.class);
 			
 			Predicate predicate = builder.and();
 			
 			//Replicar para todos os atributos
-			if(instance.getTitle() != null) {
-				predicate = builder.and(builder.equal(root.get("title"), instance.getTitle()));
+			if(instance.getAccountId() != null) {
+				predicate = builder.and(builder.equal(root.get("account_id"), instance.getAccountId()));
+			}
+			
+			if(instance.getCreationDate() != null) {
+				predicate = builder.and(builder.equal(root.get("creation_date"), instance.getCreationDate()));
+			}
+			
+			if(instance.getParentId() != null) {
+				predicate = builder.and(builder.equal(root.get("parent_id"), instance.getParentId()));
+			}
+			
+			if(instance.getPostId() != null) {
+				predicate = builder.and(builder.equal(root.get("post_id"), instance.getPostId()));
+			}
+			
+			if(instance.getText() != null) {
+				predicate = builder.and(builder.equal(root.get("text"), instance.getText()));
 			}
 			
 			criteria.select(root).where(predicate);
-			Query<Category> q = session.createQuery(criteria);
-			List<Category> results = q.getResultList();
+			Query<Commentary> q = session.createQuery(criteria);
+			List<Commentary> results = q.getResultList();
 			log.debug("find by example successful, result size: " + results.size());
 			session.close();
 			return results;

@@ -1,4 +1,4 @@
-package com.school.model;
+package com.school.koren.model;
 
 import java.util.Date;
 import java.util.Set;

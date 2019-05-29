@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.school.dao.AccountHome;
-import com.school.dao.CommentaryHome;
-import com.school.dao.PostHome;
-import com.school.model.Account;
-import com.school.model.Commentary;
-import com.school.model.Post;
+import com.school.koren.dao.AccountHome;
+import com.school.koren.dao.CommentaryHome;
+import com.school.koren.dao.PostHome;
+import com.school.koren.model.Account;
+import com.school.koren.model.Commentary;
+import com.school.koren.model.Post;
 
 /**
  * Servlet implementation class CommentPost

@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.school.dao.AccountHome;
-import com.school.dao.CategoryHome;
-import com.school.dao.PostHome;
-import com.school.model.Account;
-import com.school.model.Post;
-import com.school.model.Post.Tag;
+import com.school.koren.dao.AccountHome;
+import com.school.koren.dao.CategoryHome;
+import com.school.koren.dao.PostHome;
+import com.school.koren.model.Account;
+import com.school.koren.model.Post;
+import com.school.koren.model.Post.Tag;
 
 /**
  * Servlet implementation class Post

@@ -1,4 +1,4 @@
-package com.school.model;
+package com.school.koren.model;
 
 import java.util.Set;
 import java.util.stream.Collectors;

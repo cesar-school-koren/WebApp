@@ -1,4 +1,4 @@
-package com.school.dao;
+package com.school.koren.dao;
 
 import java.util.List;
 
@@ -15,12 +15,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
-import com.school.model.Account;
+import com.school.koren.model.Post;
 
 
-public class AccountHome {
+public class PostHome {
 
-	private static final Log log = LogFactory.getLog(AccountHome.class);
+	private static final Log log = LogFactory.getLog(PostHome.class);
 
 	private final SessionFactory sessionFactory = getSessionFactory();
 
@@ -34,9 +34,8 @@ public class AccountHome {
 		}
 	}
 
-
-	public void persist(Account transientInstance) {
-		log.debug("persisting Account instance");
+	public void persist(Post transientInstance) {
+		log.debug("persisting Post instance");
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
@@ -50,8 +49,8 @@ public class AccountHome {
 		}
 	}
 
-	public void attachDirty(Account instance) {
-		log.debug("attaching dirty Account instance");
+	public void attachDirty(Post instance) {
+		log.debug("attaching dirty Post instance");
 		try {
 			sessionFactory.getCurrentSession().saveOrUpdate(instance);
 			log.debug("attach successful");
@@ -61,8 +60,8 @@ public class AccountHome {
 		}
 	}
 
-	public void attachClean(Account instance) {
-		log.debug("attaching clean Account instance");
+	public void attachClean(Post instance) {
+		log.debug("attaching clean Post instance");
 		try {
 			sessionFactory.getCurrentSession().lock(instance, LockMode.NONE);
 			log.debug("attach successful");
@@ -72,8 +71,8 @@ public class AccountHome {
 		}
 	}
 
-	public void delete(Account persistentInstance) {
-		log.debug("deleting Account instance");
+	public void delete(Post persistentInstance) {
+		log.debug("deleting Post instance");
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
@@ -87,12 +86,12 @@ public class AccountHome {
 		}
 	}
 
-	public Account merge(Account detachedInstance) {
-		log.debug("merging Account instance");
+	public Post merge(Post detachedInstance) {
+		log.debug("merging Post instance");
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
-			Account result = (Account) session.merge(detachedInstance);
+			Post result = (Post) session.merge(detachedInstance);
 			session.getTransaction().commit();
 			session.close();
 			log.debug("merge successful");
@@ -103,13 +102,13 @@ public class AccountHome {
 		}
 	}
 
-	public Account findById(int id) {
-		log.debug("getting Account instance with id: " + id);
+	public Post findById(int id) {
+		log.debug("getting Post instance with id: " + id);
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
 			
-			Account instance = (Account) session.get(Account.class, id);
+			Post instance = (Post) session.get(Post.class, id);
 			if (instance == null) {
 				log.debug("get successful, no instance found");
 			} else {
@@ -123,37 +122,45 @@ public class AccountHome {
 		}
 	}
 
-	public List<Account> findByExample(Account instance) {
-		log.debug("finding Account instance by example");
+	public List<Post> findByExample(Post instance) {
+		log.debug("finding Post instance by example");
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
 			CriteriaBuilder builder = session.getCriteriaBuilder();
-			CriteriaQuery<Account> criteria = builder.createQuery(Account.class);
-			Root<Account> root = criteria.from(Account.class);
+			CriteriaQuery<Post> criteria = builder.createQuery(Post.class);
+			Root<Post> root = criteria.from(Post.class);
 			
 			Predicate predicate = builder.and();
 			
 			//Replicar para todos os atributos
-			if(instance.getUsername() != null) {
-				predicate = builder.and(builder.equal(root.get("username"), instance.getUsername()));
+			if(instance.getAccountId() != null) {
+				predicate = builder.and(builder.equal(root.get("account_id"), instance.getAccountId()));
 			}
 			
-			if(instance.getEmail() != null) {
-				predicate = builder.and(builder.equal(root.get("email"), instance.getEmail()));
+			if(instance.getCategoryId() != null) {
+				predicate = builder.and(builder.equal(root.get("category_id"), instance.getCategoryId()));
 			}
 			
 			if(instance.getCreationDate() != null) {
 				predicate = builder.and(builder.equal(root.get("creation_date"), instance.getCreationDate()));
 			}
 			
-			if(instance.getLastLogin() != null) {
-				predicate = builder.and(builder.equal(root.get("last_login"), instance.getLastLogin()));
+			if(instance.getTags() != null) {
+				predicate = builder.and(builder.equal(root.get("tags"), instance.getTags()));
+			}
+			
+			if(instance.getTitle() != null) {
+				predicate = builder.and(builder.equal(root.get("title"), instance.getTitle()));
+			}
+			
+			if(instance.getText() != null) {
+				predicate = builder.and(builder.equal(root.get("text"), instance.getText()));
 			}
 			
 			criteria.select(root).where(predicate);
-			Query<Account> q = session.createQuery(criteria);
-			List<Account> results = q.getResultList();
+			Query<Post> q = session.createQuery(criteria);
+			List<Post> results = q.getResultList();
 			log.debug("find by example successful, result size: " + results.size());
 			session.close();
 			return results;

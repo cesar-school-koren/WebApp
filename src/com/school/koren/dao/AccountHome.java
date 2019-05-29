@@ -1,4 +1,4 @@
-package com.school.dao;
+package com.school.koren.dao;
 
 import java.util.List;
 
@@ -15,12 +15,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
-import com.school.model.Commentary;
+import com.school.koren.model.Account;
 
 
-public class CommentaryHome {
+public class AccountHome {
 
-	private static final Log log = LogFactory.getLog(CommentaryHome.class);
+	private static final Log log = LogFactory.getLog(AccountHome.class);
 
 	private final SessionFactory sessionFactory = getSessionFactory();
 
@@ -34,8 +34,9 @@ public class CommentaryHome {
 		}
 	}
 
-	public void persist(Commentary transientInstance) {
-		log.debug("persisting Commentary instance");
+
+	public void persist(Account transientInstance) {
+		log.debug("persisting Account instance");
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
@@ -49,8 +50,8 @@ public class CommentaryHome {
 		}
 	}
 
-	public void attachDirty(Commentary instance) {
-		log.debug("attaching dirty Commentary instance");
+	public void attachDirty(Account instance) {
+		log.debug("attaching dirty Account instance");
 		try {
 			sessionFactory.getCurrentSession().saveOrUpdate(instance);
 			log.debug("attach successful");
@@ -60,8 +61,8 @@ public class CommentaryHome {
 		}
 	}
 
-	public void attachClean(Commentary instance) {
-		log.debug("attaching clean Commentary instance");
+	public void attachClean(Account instance) {
+		log.debug("attaching clean Account instance");
 		try {
 			sessionFactory.getCurrentSession().lock(instance, LockMode.NONE);
 			log.debug("attach successful");
@@ -71,8 +72,8 @@ public class CommentaryHome {
 		}
 	}
 
-	public void delete(Commentary persistentInstance) {
-		log.debug("deleting Commentary instance");
+	public void delete(Account persistentInstance) {
+		log.debug("deleting Account instance");
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
@@ -86,12 +87,12 @@ public class CommentaryHome {
 		}
 	}
 
-	public Commentary merge(Commentary detachedInstance) {
-		log.debug("merging Commentary instance");
+	public Account merge(Account detachedInstance) {
+		log.debug("merging Account instance");
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
-			Commentary result = (Commentary) session.merge(detachedInstance);
+			Account result = (Account) session.merge(detachedInstance);
 			session.getTransaction().commit();
 			session.close();
 			log.debug("merge successful");
@@ -102,13 +103,13 @@ public class CommentaryHome {
 		}
 	}
 
-	public Commentary findById(int id) {
-		log.debug("getting Commentary instance with id: " + id);
+	public Account findById(int id) {
+		log.debug("getting Account instance with id: " + id);
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
 			
-			Commentary instance = (Commentary) session.get(Commentary.class, id);
+			Account instance = (Account) session.get(Account.class, id);
 			if (instance == null) {
 				log.debug("get successful, no instance found");
 			} else {
@@ -122,41 +123,37 @@ public class CommentaryHome {
 		}
 	}
 
-	public List<Commentary> findByExample(Commentary instance) {
-		log.debug("finding Commentary instance by example");
+	public List<Account> findByExample(Account instance) {
+		log.debug("finding Account instance by example");
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
 			CriteriaBuilder builder = session.getCriteriaBuilder();
-			CriteriaQuery<Commentary> criteria = builder.createQuery(Commentary.class);
-			Root<Commentary> root = criteria.from(Commentary.class);
+			CriteriaQuery<Account> criteria = builder.createQuery(Account.class);
+			Root<Account> root = criteria.from(Account.class);
 			
 			Predicate predicate = builder.and();
 			
 			//Replicar para todos os atributos
-			if(instance.getAccountId() != null) {
-				predicate = builder.and(builder.equal(root.get("account_id"), instance.getAccountId()));
+			if(instance.getUsername() != null) {
+				predicate = builder.and(builder.equal(root.get("username"), instance.getUsername()));
+			}
+			
+			if(instance.getEmail() != null) {
+				predicate = builder.and(builder.equal(root.get("email"), instance.getEmail()));
 			}
 			
 			if(instance.getCreationDate() != null) {
 				predicate = builder.and(builder.equal(root.get("creation_date"), instance.getCreationDate()));
 			}
 			
-			if(instance.getParentId() != null) {
-				predicate = builder.and(builder.equal(root.get("parent_id"), instance.getParentId()));
-			}
-			
-			if(instance.getPostId() != null) {
-				predicate = builder.and(builder.equal(root.get("post_id"), instance.getPostId()));
-			}
-			
-			if(instance.getText() != null) {
-				predicate = builder.and(builder.equal(root.get("text"), instance.getText()));
+			if(instance.getLastLogin() != null) {
+				predicate = builder.and(builder.equal(root.get("last_login"), instance.getLastLogin()));
 			}
 			
 			criteria.select(root).where(predicate);
-			Query<Commentary> q = session.createQuery(criteria);
-			List<Commentary> results = q.getResultList();
+			Query<Account> q = session.createQuery(criteria);
+			List<Account> results = q.getResultList();
 			log.debug("find by example successful, result size: " + results.size());
 			session.close();
 			return results;

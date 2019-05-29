@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.school.dao.AccountHome;
-import com.school.model.Account;
+import com.school.koren.dao.AccountHome;
+import com.school.koren.model.Account;
 
 
 /**
