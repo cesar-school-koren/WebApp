@@ -79,7 +79,11 @@ REFERENCES Koren.Commentary ("commentary_id") ON DELETE CASCADE;
 
 INSERT INTO koren.category(
             title)
-    VALUES ('Zero a Cinco');
+    VALUES ('Zero a Dois');
+
+INSERT INTO koren.category(
+            title)
+    VALUES ('Tres a Cinco');
 
 INSERT INTO koren.category(
             title)
@@ -88,4 +92,8 @@ INSERT INTO koren.category(
 INSERT INTO koren.category(
             title)
     VALUES ('Dez a Quinze');
+
+INSERT INTO koren.category(
+            title)
+    VALUES ('Quinze em Diante');
 ~~~
