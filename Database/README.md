@@ -13,6 +13,7 @@ CREATE TABLE Koren.Account (
     "email" varchar(50)   NOT NULL,
     "creation_date" timestamp   NOT NULL,
     "last_login" timestamp   NULL,
+    "privilege" integer NOT NULL DEFAULT 1,
     CONSTRAINT "pk_Account" PRIMARY KEY (
         "account_id"
      ),
@@ -52,9 +53,10 @@ CREATE TABLE Koren.Commentary (
     "commentary_id" serial   NOT NULL,
     "account_id" serial   NOT NULL,
     "post_id" serial   NOT NULL,
-    "parent_id" serial   NULL,
+    "parent_id" serial,
     "text" text   NOT NULL,
     "creation_date" timestamp   NOT NULL,
+    "depth" integer NOT NULL DEFAULT 0,
     CONSTRAINT "pk_Commentary" PRIMARY KEY (
         "commentary_id"
      )
