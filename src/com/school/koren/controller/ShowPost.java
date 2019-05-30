@@ -61,7 +61,8 @@ public class ShowPost extends HttpServlet {
 			exemplo.setPostId(post);
 			List<Commentary> comentarios = commentaryHome.findByExample(exemplo);	
 			
-			comentarios = Commentary.sortComments(comentarios);
+			if (!comentarios.isEmpty())
+				comentarios = Commentary.sortComments(comentarios);
 			
 			// Escreve a sessao de comentarios existente
 			session.setAttribute("comentarios", comentarios);
