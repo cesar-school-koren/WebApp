@@ -54,6 +54,7 @@ public class CreatePost extends HttpServlet {
 		
 		String titulo = request.getParameter("titulo");
 		String texto = request.getParameter("texto");
+		Integer categoryId = Integer.parseInt(request.getParameter("categoria"));
 		
 		// operação pra mandar post
 		Date agora = new Date(); // pega data
@@ -73,7 +74,7 @@ public class CreatePost extends HttpServlet {
 		
 		// set atributos do objeto Post
 		post.setAccountId(accountHome.findByExample(conta).get(0));
-		post.setCategoryId(categoryHome.findById(1));
+		post.setCategoryId(categoryHome.findById(categoryId));
 		post.setCreationDate(agora);
 
 		

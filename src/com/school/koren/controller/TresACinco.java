@@ -17,36 +17,30 @@ import com.school.koren.repository.CategoryHome;
 import com.school.koren.repository.PostHome;
 
 /**
- * Servlet implementation class SeteADez
+ * Servlet implementation class TresACinco
  */
-@WebServlet("/ZeroADois")
-public class ZeroADois extends HttpServlet {
+@WebServlet("/TresACinco")
+public class TresACinco extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	String page="zeroAdois.jsp";
+	String page="tresAcinco.jsp";
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ZeroADois() {
+    public TresACinco() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-    @Override
-    public void init() throws ServletException {
-    	// TODO Auto-generated method stub
-    	super.init();
-    }
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-				
+
 		try {
 			Category category = new Category();
 			CategoryHome categoryHome = new CategoryHome();
-			category.setCategoryId(1);
+			category.setCategoryId(2);
 			
 			Post post = new Post();
 			PostHome postHome = new PostHome();
@@ -60,7 +54,7 @@ public class ZeroADois extends HttpServlet {
 						
 			request.setAttribute("posts", postagens);
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/zeroAdois.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/tresAcinco.jsp");
 			rd.forward(request, response);
 			
 		} catch (IOException e) {
