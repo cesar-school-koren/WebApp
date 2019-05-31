@@ -11,9 +11,7 @@
     <a href="homeLoggedIn.jsp">Home</a>
     <a href="UserPosts">Posts</a>
     <a href="logout.jsp">Logout</a>
-    <!-- <h1 class="titulo"><c:out value="${post.getTitle()}" /></h1>
-    <p class="text"><c:out value="${post.getText()}" /></p> -->
-    <c:if test="${post.getAccountId().getUsername() == username}">
+    <c:if test="${post.getAccountId().getUsername() == sessionScope.conta.getUsername() || sessionScope.conta.getPrivilege() == 0}">
 		<form action="DeletePost" method="post">
 			<button type="submit" class="btn">Deletar post</button>
 		</form>
@@ -29,22 +27,28 @@
 		<div style="margin-left:${80*comentario.getDepth()}px; width:auto; border-left: 1px dashed #000; padding-left:5px;">
   		<p><b>Autor:</b> <c:out value = "${comentario.getAccountId().getUsername()}" /></p>
   		<p><c:out value= "${comentario.getText()}" /> </p>
-  		<form action="<c:url value='AnswerComment'/>" method="post">
-  			<input type="hidden" name="postId" value="${sessionScope.post.getPostId()}" />
-  			<br>Comentar: <br><textarea name="conteudo" rows="1" cols="20" required></textarea><br><br>
-  			<input type="hidden" name="commentId" value="${comentario.getCommentaryId()}" />
-  			<button type="submit" class="btn">Responder</button>
-		</form>
-		<form action="DeleteComment" method="POST">
-			<button type="submit" name="commentId" value="${comentario.getCommentaryId()}" class="btn">Deletar comentario</button>
-		</form> 
+  		<c:if test="${sessionScope.conta != null}">
+	  		<form action="<c:url value='AnswerComment'/>" method="post">
+	  			<input type="hidden" name="postId" value="${sessionScope.post.getPostId()}" />
+	  			<br>Comentar: <br><textarea name="conteudo" rows="1" cols="20" required></textarea><br><br>
+	  			<input type="hidden" name="commentId" value="${comentario.getCommentaryId()}" />
+	  			<button type="submit" class="btn">Responder</button>
+			</form>
+		</c:if>
+		<c:if test="${comentario.getAccountId().getUsername() == sessionScope.conta.getUsername() || sessionScope.conta.getPrivilege() == 0 }">
+			<form action="DeleteComment" method="POST">
+				<button type="submit" name="commentId" value="${comentario.getCommentaryId()}" class="btn">Deletar comentario</button>
+			</form>
+		</c:if> 
 		</div>
 	</c:forEach>
-	<br>
-    <form action="<c:url value='CommentPost'/>" method="post">
-    	<input type="hidden" name="id" value="${sessionScope.post.getPostId()}" />
-		<br>Comentar: <br><textarea name="conteudo" rows="4" cols="50" required></textarea><br><br>
-		<button type="submit" class="btn">Comentar</button>
-	</form>	
+	<c:if test="${sessionScope.conta != null}">
+		<br>
+	    <form action="<c:url value='CommentPost'/>" method="post">
+	    	<input type="hidden" name="id" value="${sessionScope.post.getPostId()}" />
+			<br>Comentar: <br><textarea name="conteudo" rows="4" cols="50" required></textarea><br><br>
+			<button type="submit" class="btn">Comentar</button>
+		</form>
+	</c:if>
 </body>
 </html>

@@ -11,7 +11,7 @@
 	<a href="logout.jsp">Logout</a>
 	<a href="homeLoggedIn.jsp">Home</a>
     <!-- mostra o nome do usuario logado -->
-    <h4 class="user"><c:out value="${username}" /></h4>
+    <h4 class="user"><c:out value="${sessionScope.conta.getUsername()}" /></h4>
     <!-- mostra os post dos usuarios -->
 	<div class="show-posts">
 		<c:if test="${posts.isEmpty()}">

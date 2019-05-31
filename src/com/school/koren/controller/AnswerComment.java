@@ -51,7 +51,7 @@ public class AnswerComment extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		
 		String texto = request.getParameter("conteudo");	// pega o texto do comentario
-		String username = session.getAttribute("username").toString(); // pegar a username do usuario que vai comentar
+		Account user = (Account) session.getAttribute("conta"); // pegar a username do usuario que vai comentar
 		int postId = Integer.parseInt(request.getParameter("postId")); // pegar o id do post onde esta sendo feito o comentario
 		int parentId = Integer.parseInt(request.getParameter("commentId")); // pegar o id do post onde esta sendo feito o comentario
 		
@@ -66,7 +66,7 @@ public class AnswerComment extends HttpServlet {
 				
 		try {
 			post = postHome.findById(postId); // pega o post onde esta sendo feito o comentario
-			conta.setUsername(username); // seta o username para poder pegar a conta por ele
+			conta.setUsername(user.getUsername()); // seta o username para poder pegar a conta por ele
 			conta = accountHome.findByExample(conta).get(0); // pega o usuario que esta fazendo o comentario
 			Commentary parent = new Commentary();
 			parent = commentaryHome.findById(parentId);

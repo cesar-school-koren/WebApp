@@ -54,7 +54,7 @@ public class CommentPost extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		
 		String texto = request.getParameter("conteudo");	// pega o texto do comentario
-		String username = session.getAttribute("username").toString(); // pegar a username do usu�rio que vai comentar
+		Account user = (Account) session.getAttribute("conta"); // pegar a username do usu�rio que vai comentar
 		int postId = Integer.parseInt(request.getParameter("id")); // pegar o id do post onde est� sendo feito o coment�rio
 		
 		//Opera��o para postar coment�rio
@@ -68,7 +68,7 @@ public class CommentPost extends HttpServlet {
 				
 		try {
 			post = postHome.findById(postId); // pega o post onde est� sendo feito o coment�rio
-			conta.setUsername(username); // seta o username para poder pegar a conta por ele
+			conta.setUsername(user.getUsername()); // seta o username para poder pegar a conta por ele
 			conta = accountHome.findByExample(conta).get(0); // pega o usu�rio que est� fazendo o coment�rio
 			
 			// Set atributos do coment�rio

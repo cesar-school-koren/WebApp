@@ -47,16 +47,17 @@ public class UserPosts extends HttpServlet {
 		
 		HttpSession session = request.getSession(false);
 		
-		String username = session.getAttribute("username").toString();
+		Account conta = (Account) session.getAttribute("conta");
+		Account findConta = new Account();
+		findConta.setUsername(conta.getUsername());
 		
 		try {
-			Account conta = new Account();
 			AccountHome accountHome = new AccountHome();
-			conta.setUsername(username);
+
 			
 			Post post = new Post();
 			PostHome postHome = new PostHome();
-			post.setAccountId(accountHome.findByExample(conta).get(0));
+			post.setAccountId(accountHome.findByExample(findConta).get(0));
 			
 			List<Post> postagens = new ArrayList<>();
 			

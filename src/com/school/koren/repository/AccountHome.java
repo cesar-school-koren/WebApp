@@ -144,11 +144,11 @@ public class AccountHome {
 			}
 			
 			if(instance.getCreationDate() != null) {
-				predicate = builder.and(builder.equal(root.get("creation_date"), instance.getCreationDate()));
+				predicate = builder.and(builder.equal(root.get("creationDate"), instance.getCreationDate()));
 			}
 			
 			if(instance.getLastLogin() != null) {
-				predicate = builder.and(builder.equal(root.get("last_login"), instance.getLastLogin()));
+				predicate = builder.and(builder.equal(root.get("lastLogin"), instance.getLastLogin()));
 			}
 			
 			if(instance.getPrivilege() != null) {
