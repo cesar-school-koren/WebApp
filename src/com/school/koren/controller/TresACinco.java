@@ -38,13 +38,11 @@ public class TresACinco extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		try {
-			Category category = new Category();
 			CategoryHome categoryHome = new CategoryHome();
-			category.setCategoryId(2);
 			
 			Post post = new Post();
 			PostHome postHome = new PostHome();
-			post.setCategoryId(categoryHome.findByExample(category).get(0));
+			post.setCategoryId(categoryHome.findById(2));
 			
 			List<Post> postagens = new ArrayList<>();
 			

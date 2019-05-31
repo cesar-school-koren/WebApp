@@ -11,44 +11,36 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.school.koren.model.Category;
 import com.school.koren.model.Post;
 import com.school.koren.repository.CategoryHome;
 import com.school.koren.repository.PostHome;
 
 /**
- * Servlet implementation class SeteADez
+ * Servlet implementation class QuinzeEmDiante
  */
-@WebServlet("/ZeroADois")
-public class ZeroADois extends HttpServlet {
+@WebServlet("/QuinzeEmDiante")
+public class QuinzeEmDiante extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	String page="zeroAdois.jsp";
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ZeroADois() {
+    public QuinzeEmDiante() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-    @Override
-    public void init() throws ServletException {
-    	// TODO Auto-generated method stub
-    	super.init();
-    }
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-				
+
 		try {
 			CategoryHome categoryHome = new CategoryHome();
 			
 			Post post = new Post();
 			PostHome postHome = new PostHome();
-			post.setCategoryId(categoryHome.findById(1));
+			post.setCategoryId(categoryHome.findById(5));
 			
 			List<Post> postagens = new ArrayList<>();
 			
@@ -58,13 +50,12 @@ public class ZeroADois extends HttpServlet {
 						
 			request.setAttribute("posts", postagens);
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/zeroAdois.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/quinzeEMdiante.jsp");
 			rd.forward(request, response);
 			
 		} catch (IOException e) {
 			// TODO: handle exception
 		}
-		
 	}
 
 }

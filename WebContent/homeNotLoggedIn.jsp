@@ -13,6 +13,9 @@
     <div class="categorias">
         <a href="ZeroADois">Zero A Dois Anos</a>
         <a href="TresACinco">Tres A Cinco Anos</a>
+        <a href="CincoADez">Cinco A Dez Anos</a>
+        <a href="DezAQuinze">Dez A Quinze Anos</a>
+        <a href="QuinzeEmDiante">Quinze em Diante</a>
     </div>
     <h2 class="homePageTitle">Home Page</h2>
 </body>
