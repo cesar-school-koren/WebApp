@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib prefix="s" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,9 +10,10 @@
     <title>Home Page</title>
 </head>
 <body>
+	<s:autentication/>
     <a href="logout.jsp">Logout</a>
     <!-- mostra o nome do usuario logado -->
-    <h4 class="user"><c:out value="${username}" /></h4>
+    <h4 class="user"><c:out value="${sessionScope.conta.getUsername()}" /></h4>
     <div class="post">
         <a href="createPost.jsp">Fazer postagem</a>
         <a href="UserPosts">Postagens do usuario</a> <!-- chama o servlet que redireciona para o jsp -->

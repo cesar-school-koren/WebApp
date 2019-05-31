@@ -65,7 +65,7 @@ public class Login extends HttpServlet {
 				HttpSession session = request.getSession();
 				lista.get(0).setLastLogin(agora);
 				accountHome.merge(lista.get(0));
-				session.setAttribute("username", username);
+				session.setAttribute("conta", lista.get(0));
 				response.sendRedirect("homeLoggedIn.jsp");
 			}else {
 				System.out.println("Senha errada!");
