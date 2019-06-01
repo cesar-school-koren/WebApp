@@ -10,6 +10,7 @@
     <title>Login</title>
 </head>
 <body>
+	<s:isAnon/>
     <s:menu/>
     <c:if test="${not empty errorMessage}">
     	<p><c:out value="Username não existe!"/></p>

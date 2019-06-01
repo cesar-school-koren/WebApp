@@ -9,6 +9,7 @@
 <title>Postagens do usuário</title>
 </head>
 <body>
+	<s:autentication/>
 	<s:menu/>
     <!-- mostra os post dos usuarios -->
 	<div class="show-posts">
