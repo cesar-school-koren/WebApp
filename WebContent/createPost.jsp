@@ -1,5 +1,7 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +10,7 @@
     <title>Post</title>
 </head>
 <body>
+	<s:autentication/>
     <h2>Criar postagem</h2>
     <form action="CreatePost" method="POST">
         <pre>
