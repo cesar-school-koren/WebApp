@@ -1,16 +1,16 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="home.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="home.css">
     <meta charset="UTF-8">
     <title>Home Page</title>
 </head>
 <body>
-    <a href="login.jsp">Login</a>
-    <a href="register.jsp">Register</a>
-    <a href="search.jsp">Search</a>
+	<s:menu/>
     <div class="categorias">
         <a href="ZeroADois">Zero A Dois Anos</a>
         <a href="TresACinco">Tres A Cinco Anos</a>

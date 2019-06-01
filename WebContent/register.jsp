@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,8 +10,7 @@
 	<title>Register</title>
 </head>
 <body>
-    <a href="homeNotLoggedIn.jsp">Home</a>
-    <a href="login.jsp">Login</a>
+	<s:menu/>
     <c:if test="${not empty errorMessage}">
     	<p><c:out value="Username e Email já existem!"/></p>
     </c:if>

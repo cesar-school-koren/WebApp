@@ -2,15 +2,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ taglib prefix="s" tagdir="/WEB-INF/tags"%>
 <html>
 <head>
     <meta charset="UTF-8">
     <title><c:out value="${sessionScope.post.getTitle()}" /></title>
 </head>
 <body>
-    <a href="homeLoggedIn.jsp">Home</a>
-    <a href="UserPosts">Posts</a>
-    <a href="logout.jsp">Logout</a>
+	<c:menu/>
     <c:if test="${post.getAccountId().getUsername() == sessionScope.conta.getUsername() || sessionScope.conta.getPrivilege() == 0}">
 		<form action="DeletePost" method="post">
 			<button type="submit" class="btn">Deletar post</button>

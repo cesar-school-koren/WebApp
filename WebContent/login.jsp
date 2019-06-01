@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ taglib prefix="s" tagdir="/WEB-INF/tags"%>
 <html>
 <head>
     <link rel="stylesheet" href="inputPages.css" type="text/css">
@@ -9,7 +10,7 @@
     <title>Login</title>
 </head>
 <body>
-    <a href="homeNotLoggedIn.jsp">Home</a>
+    <s:menu/>
     <c:if test="${not empty errorMessage}">
     	<p><c:out value="Username não existe!"/></p>
     </c:if>
@@ -20,6 +21,5 @@
                        <input type="submit" value="Login">
         </pre>
     </form>
-    <a href="register.jsp">Register</a>
 </body>
 </html>

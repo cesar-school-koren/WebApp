@@ -10,7 +10,7 @@
 	<%
 		// termina a sessao http e redireciona para a home page comum
 		session.invalidate();
-		response.sendRedirect("homeNotLoggedIn.jsp");
+		response.sendRedirect("home.jsp");
 	%>
 </body>
 </html>

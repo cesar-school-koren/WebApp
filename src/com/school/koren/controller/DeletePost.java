@@ -52,10 +52,10 @@ public class DeletePost extends HttpServlet {
 			Post post = (Post) session.getAttribute("post");
 			PostHome postHome = new PostHome();
 			postHome.delete(post);
-			response.sendRedirect("homeLoggedIn.jsp");
+			response.sendRedirect("home.jsp");
 		} catch (IOException e) {
 			writer.print("Houve um problema ao deletar o post!");
-			RequestDispatcher rd = request.getRequestDispatcher("homeLoggedIn.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
 			rd.include(request, response);
 		}
 	}

@@ -2,15 +2,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ taglib prefix="s" tagdir="/WEB-INF/tags"%>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Zero a Dois Anos</title>
 </head>
 <body>
-	<a href="logout.jsp">Logout</a>
-	<a href="homeLoggedIn.jsp">Home</a>
-    <!-- mostra o nome do usuario logado -->
+	<s:menu/>
     <h4 class="categoria">Zero A Dois Anos</h4>
     <!-- mostra os post da categoria -->
 	<div class="show-posts">

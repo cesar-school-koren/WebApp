@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="s" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,8 +9,9 @@
 	<title>Resultado da pesquisa</title>
 </head>
 <body>
+	<s:menu/>
 		<a href="homeLoggedIn.jsp">Home</a>
-		<a href="search.jsp">Fazer uma nova pesquisa</a>
+		<p><a href="search.jsp">Fazer uma nova pesquisa</a></p>
 	    <div class="show-posts">
 			<c:if test="${posts.isEmpty()}">
 				<h2>Não existem Posts nos termos procurados</h2>

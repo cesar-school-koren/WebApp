@@ -2,16 +2,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ taglib prefix="s" tagdir="/WEB-INF/tags"%>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Postagens do usuário</title>
 </head>
 <body>
-	<a href="logout.jsp">Logout</a>
-	<a href="homeLoggedIn.jsp">Home</a>
-    <!-- mostra o nome do usuario logado -->
-    <h4 class="user"><c:out value="${sessionScope.conta.getUsername()}" /></h4>
+	<s:menu/>
     <!-- mostra os post dos usuarios -->
 	<div class="show-posts">
 		<c:if test="${posts.isEmpty()}">
