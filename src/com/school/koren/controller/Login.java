@@ -58,20 +58,25 @@ public class Login extends HttpServlet {
 			Account conta = new Account();
 			Date agora = new Date();
 			conta.setUsername(username);
-			List<Account> lista = accountHome.findByExample(conta);
-			String contaSenha = lista.get(0).getPassword();
-			
-			if(contaSenha.equals(password)) {
-				HttpSession session = request.getSession();
-				lista.get(0).setLastLogin(agora);
-				accountHome.merge(lista.get(0));
-				session.setAttribute("conta", lista.get(0));
-				response.sendRedirect("homeLoggedIn.jsp");
-			}else {
-				System.out.println("Senha errada!");
-				out.print("Senha errada!");
-				RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-				rd.include(request, response);
+			try {
+				List<Account> lista = accountHome.findByExample(conta);
+				String contaSenha = lista.get(0).getPassword();
+				
+				if(contaSenha.equals(password)) {
+					HttpSession session = request.getSession();
+					lista.get(0).setLastLogin(agora);
+					accountHome.merge(lista.get(0));
+					session.setAttribute("conta", lista.get(0));
+					response.sendRedirect("homeLoggedIn.jsp");
+				}else {
+					System.out.println("Senha errada!");
+					out.print("Senha errada!");
+					RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+					rd.include(request, response);
+				}
+			}catch (Exception e){
+				request.setAttribute("errorMessage", "Username não existe!");
+				request.getRequestDispatcher("login.jsp").include(request, response);
 			}
 
 		} catch (IOException e) {
