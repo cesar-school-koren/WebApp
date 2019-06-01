@@ -20,6 +20,7 @@
 	<h3>${sessionScope.post.getTitle()}</h3>
 	<p><b>Tema:</b> <c:out value="${sessionScope.post.getTags()}" /></p>
 	<p><b>Autor:</b> <c:out value="${sessionScope.post.getAccountId().getUsername()}" /></p>
+	<p><b>Hora:</b> <c:out value="${sessionScope.post.getCreationDate()}" /></p>
     <p><b>Conteúdo:</b> <c:out value="${sessionScope.post.getText()}" /></p>
 	<!-- testar ja que aqui no meu pc ta dando erro no hibernate -->	
 	<h2>Comentários</h2>

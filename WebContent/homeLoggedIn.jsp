@@ -17,6 +17,7 @@
     <div class="post">
         <a href="createPost.jsp">Fazer postagem</a>
         <a href="UserPosts">Postagens do usuario</a> <!-- chama o servlet que redireciona para o jsp -->
+        <a href="search.jsp">Search</a>
     </div>
     <div class="categorias">
         <a href="ZeroADois">Zero A Dois Anos</a>

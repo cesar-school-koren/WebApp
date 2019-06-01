@@ -10,6 +10,7 @@
 <body>
     <a href="login.jsp">Login</a>
     <a href="register.jsp">Register</a>
+    <a href="search.jsp">Search</a>
     <div class="categorias">
         <a href="ZeroADois">Zero A Dois Anos</a>
         <a href="TresACinco">Tres A Cinco Anos</a>
