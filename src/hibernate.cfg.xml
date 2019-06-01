@@ -4,6 +4,10 @@
 <hibernate-configuration>
  <session-factory>
   <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+  <!-- Conexão com banco de dados na AWS
+  <property name="hibernate.connection.password">2NR5s6EtP32vYRw</property>
+  <property name="hibernate.connection.url">jdbc:postgresql://ec2-3-13-109-244.us-east-2.compute.amazonaws.com:5432/koren</property>
+   -->
   <property name="hibernate.connection.password">admin</property>
   <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/postgres</property>
   <property name="hibernate.connection.username">postgres</property>

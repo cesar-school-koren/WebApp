@@ -9,7 +9,7 @@
     <title><c:out value="${sessionScope.post.getTitle()}" /></title>
 </head>
 <body>
-	<c:menu/>
+	<s:menu/>
     <c:if test="${post.getAccountId().getUsername() == sessionScope.conta.getUsername() || sessionScope.conta.getPrivilege() == 0}">
 		<form action="DeletePost" method="post">
 			<button type="submit" class="btn">Deletar post</button>
