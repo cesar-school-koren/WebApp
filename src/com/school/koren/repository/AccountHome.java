@@ -1,5 +1,6 @@
 package com.school.koren.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -132,30 +133,30 @@ public class AccountHome {
 			CriteriaQuery<Account> criteria = builder.createQuery(Account.class);
 			Root<Account> root = criteria.from(Account.class);
 			
-			Predicate predicate = builder.and();
+			List<Predicate> predicates = new ArrayList<Predicate>();
 			
 			//Replicar para todos os atributos
 			if(instance.getUsername() != null) {
-				predicate = builder.and(builder.equal(root.get("username"), instance.getUsername()));
+				predicates.add(builder.and(builder.equal(root.get("username"), instance.getUsername())));
 			}
 			
 			if(instance.getEmail() != null) {
-				predicate = builder.and(builder.equal(root.get("email"), instance.getEmail()));
+				predicates.add(builder.and(builder.equal(root.get("email"), instance.getEmail())));
 			}
 			
 			if(instance.getCreationDate() != null) {
-				predicate = builder.and(builder.equal(root.get("creationDate"), instance.getCreationDate()));
+				predicates.add(builder.and(builder.equal(root.get("creationDate"), instance.getCreationDate())));
 			}
 			
 			if(instance.getLastLogin() != null) {
-				predicate = builder.and(builder.equal(root.get("lastLogin"), instance.getLastLogin()));
+				predicates.add(builder.and(builder.equal(root.get("lastLogin"), instance.getLastLogin())));
 			}
 			
 			if(instance.getPrivilege() != null) {
-				predicate = builder.and(builder.equal(root.get("privilege"), instance.getPrivilege()));
+				predicates.add(builder.and(builder.equal(root.get("privilege"), instance.getPrivilege())));
 			}
 			
-			criteria.select(root).where(predicate);
+			criteria.select(root).where(builder.and(predicates.toArray(new Predicate[predicates.size()])));
 			Query<Account> q = session.createQuery(criteria);
 			List<Account> results = q.getResultList();
 			log.debug("find by example successful, result size: " + results.size());

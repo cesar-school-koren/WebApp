@@ -1,5 +1,6 @@
 package com.school.koren.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -131,14 +132,14 @@ public class CategoryHome {
 			CriteriaQuery<Category> criteria = builder.createQuery(Category.class);
 			Root<Category> root = criteria.from(Category.class);
 			
-			Predicate predicate = builder.and();
+			List<Predicate> predicates = new ArrayList<Predicate>();
 			
 			//Replicar para todos os atributos
 			if(instance.getTitle() != null) {
-				predicate = builder.and(builder.equal(root.get("title"), instance.getTitle()));
+				predicates.add(builder.and(builder.equal(root.get("title"), instance.getTitle())));
 			}
 			
-			criteria.select(root).where(predicate);
+			criteria.select(root).where(builder.and(predicates.toArray(new Predicate[predicates.size()])));
 			Query<Category> q = session.createQuery(criteria);
 			List<Category> results = q.getResultList();
 			log.debug("find by example successful, result size: " + results.size());

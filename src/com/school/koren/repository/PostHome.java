@@ -1,5 +1,7 @@
 package com.school.koren.repository;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -131,34 +133,34 @@ public class PostHome {
 			CriteriaQuery<Post> criteria = builder.createQuery(Post.class);
 			Root<Post> root = criteria.from(Post.class);
 			
-			Predicate predicate = builder.and();
+			List<Predicate> predicates = new ArrayList<Predicate>();
 			
 			//Replicar para todos os atributos
 			if(instance.getAccountId() != null) {
-				predicate = builder.and(builder.equal(root.get("account_id"), instance.getAccountId()));
+				predicates.add(builder.and(builder.equal(root.get("account_id"), instance.getAccountId())));
 			}
 			
 			if(instance.getCategoryId() != null) {
-				predicate = builder.and(builder.equal(root.get("category_id"), instance.getCategoryId()));
+				predicates.add(builder.and(builder.equal(root.get("category_id"), instance.getCategoryId())));
 			}
 			
 			if(instance.getCreationDate() != null) {
-				predicate = builder.and(builder.equal(root.get("creation_date"), instance.getCreationDate()));
+				predicates.add(builder.and(builder.equal(root.get("creation_date"), instance.getCreationDate())));
 			}
 			
 			if(instance.getTags() != null) {
-				predicate = builder.and(builder.equal(root.get("tags"), instance.getTags()));
+				predicates.add(builder.and(builder.equal(root.get("tags"), Arrays.asList(instance.getTags()))));
 			}
 			
 			if(instance.getTitle() != null) {
-				predicate = builder.and(builder.equal(root.get("title"), instance.getTitle()));
+				predicates.add(builder.and(builder.equal(root.get("title"), instance.getTitle())));
 			}
 			
 			if(instance.getText() != null) {
-				predicate = builder.and(builder.equal(root.get("text"), instance.getText()));
+				predicates.add(builder.and(builder.equal(root.get("text"), instance.getText())));
 			}
 			
-			criteria.select(root).where(predicate);
+			criteria.select(root).where(builder.and(predicates.toArray(new Predicate[predicates.size()])));
 			Query<Post> q = session.createQuery(criteria);
 			List<Post> results = q.getResultList();
 			log.debug("find by example successful, result size: " + results.size());
