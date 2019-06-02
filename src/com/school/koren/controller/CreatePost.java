@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -47,10 +48,9 @@ public class CreatePost extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
 		
-		HttpSession session = request.getSession();
-		String username = session.getAttribute("username").toString();
+		HttpSession session = request.getSession(false);
+		Account user = (Account) session.getAttribute("conta");
 		
 		String titulo = request.getParameter("titulo");
 		String texto = request.getParameter("texto");
@@ -70,8 +70,9 @@ public class CreatePost extends HttpServlet {
 		for(int i = 0; i < tagsSelected.length; i++)
 			tags.add(Tag.valueOf(tagsSelected[i]));
 		
-		conta.setUsername(username);  
+		conta.setUsername(user.getUsername());  
 		
+	
 		// set atributos do objeto Post
 		post.setAccountId(accountHome.findByExample(conta).get(0));
 		post.setCategoryId(categoryHome.findById(categoryId));
