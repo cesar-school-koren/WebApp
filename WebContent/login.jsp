@@ -17,8 +17,8 @@
     </c:if>
     <form action="Login" method="POST">
         <pre>
-            Username : <input type="text" name="username">
-            Password : <input type="password" name="password">
+            Username : <input type="text" name="username" required>
+            Password : <input type="password" name="password" required>
                        <input type="submit" value="Login">
         </pre>
     </form>

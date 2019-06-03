@@ -45,6 +45,7 @@ public class Register extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 		
+		request.setCharacterEncoding("UTF-8");
 		PrintWriter writer = response.getWriter();
 		
 		String username = request.getParameter("username").trim();

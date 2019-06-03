@@ -11,6 +11,7 @@
 </head>
 <body>
 	<s:autentication/>
+	<s:menu/>
     <h2>Criar postagem</h2>
     <form action="CreatePost" method="POST">
         <pre>

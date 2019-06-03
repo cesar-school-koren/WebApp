@@ -44,8 +44,7 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
-		
+		request.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
 		
