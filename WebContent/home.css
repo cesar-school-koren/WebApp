@@ -1,0 +1,26 @@
+.homePageTitle{
+    position: relative;
+    text-align: center;
+}
+
+div.user{
+    position: relative;
+    text-align: right;
+    font-family: Helvetica;
+    display: inline-block;
+}
+
+div.categorias{
+    position: relative;
+    text-align: center;
+    font-family: 'Courier New';
+    display: block; 
+    margin: auto;
+}
+
+div.post{
+    position: relative;
+    display: inline;
+    text-align: right;
+    padding: 10px 10px;
+}

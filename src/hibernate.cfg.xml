@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory>
+  <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+  <!-- Conexão com banco de dados na AWS -->
+  
+  <property name="hibernate.connection.password">2NR5s6EtP32vYRw</property>
+  <property name="hibernate.connection.url">jdbc:postgresql://ec2-54-207-6-58.sa-east-1.compute.amazonaws.com:5432/koren</property>
+  
+  <!-- Conexão de banco de dados local -->
+  <!--  
+  <property name="hibernate.connection.password">admin</property>
+  <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/postgres</property>
+  -->
+  <!-- UTF8 encoding -->
+  <property name="hibernate.connection.CharSet">utf8</property>
+  <property name="hibernate.connection.characterEncoding">utf8</property>
+  <property name="hibernate.connection.useUnicode">true</property>
+  
+  <property name="hibernate.connection.username">postgres</property>
+  <property name="hibernate.default_schema">koren</property>
+  <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+  <property name="hibernate.current_session_context_class">thread</property>
+  <mapping class="com.school.koren.model.Account" file="Account" package="com.school.koren.model"/>
+  <mapping class="com.school.koren.model.Category" file="Category" package="com.school.koren.model"/>
+  <mapping class="com.school.koren.model.Commentary" file="Commentary" package="com.school.koren.model"/>
+  <mapping class="com.school.koren.model.Post" file="Post" package="com.school.koren.model"/>
+ </session-factory>
+</hibernate-configuration>
