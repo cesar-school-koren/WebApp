@@ -11,10 +11,13 @@ import javax.persistence.criteria.Root;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Criteria;
 import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 
 import com.school.koren.model.Post;
@@ -170,6 +173,18 @@ public class PostHome {
 			log.error("find by example failed", re);
 			throw re;
 		}
+	}
+	
+	
+	public List<Post> searchText(String texto){
+		Session session = sessionFactory.getCurrentSession();
+		session.beginTransaction();
+		Criteria crit = session.createCriteria(Post.class);
+		crit.add(Restrictions.ilike("title", texto, MatchMode.ANYWHERE));
+		List<Post> results = crit.list();
+		
+		session.close();
+		return results;
 	}
 	
 	public void terminate() {

@@ -45,6 +45,7 @@ public class SearchPost extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
+			request.setCharacterEncoding("UTF-8");
 			CategoryHome categoryHome = new CategoryHome();
 			List<Tag> tags = new ArrayList<Tag>();
 			
@@ -54,7 +55,6 @@ public class SearchPost extends HttpServlet {
 				tags.add(Tag.valueOf(tagsSelected[i]));
 			
 			Integer categoryId = Integer.parseInt(request.getParameter("categoria"));
-			System.out.println(categoryId);
 			
 			Post post = new Post();
 			PostHome postHome = new PostHome();
@@ -65,8 +65,9 @@ public class SearchPost extends HttpServlet {
 			post.setTags(tags);
 			List<Post> postagens = new ArrayList<>();
 			
-			postagens = postHome.findByExample(post);
-						
+			String text = request.getParameter("search");
+			//postagens = postHome.findByExample(post);
+			postagens = postHome.searchText(text);		
 			request.setAttribute("posts", postagens);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/searchResult.jsp");
