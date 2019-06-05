@@ -24,7 +24,7 @@
                      	<option value="5">Quinze em Diante</option>
                      </select>
                      <p>Selecione uma ou mais Tag</p>
-                     <select multiple class="select-checkbox" name="tags" required>
+                     <select multiple class="select-checkbox" size="5" name="tags" required>
                      	<option value="EDUCACAO">Educação</option>
                      	<option value="SAUDE">Saúde</option>
                      	<option value="SOCIAL">Social</option>

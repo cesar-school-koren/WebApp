@@ -53,7 +53,7 @@ public class SearchPost extends HttpServlet {
 			String[] tagsSelected = request.getParameterValues("tags");
 			
 			for(String tag : tagsSelected) {
-				if(tag.equals("QUALQUER")) {
+				if(!tag.equals("QUALQUER")) {
 					tags.add(Tag.valueOf(tag));
 				}
 			}
