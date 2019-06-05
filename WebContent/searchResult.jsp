@@ -11,7 +11,11 @@
 <body>
 	<s:menu/>
 		<a href="homeLoggedIn.jsp">Home</a>
-		<p><a href="search.jsp">Fazer uma nova pesquisa</a></p>
+		<form action="SearchText" method="POST">
+			<p>Novo Texto Para Pesquisa : <input type="text" name="search" required></p>
+			<input type="submit" value="enviar">
+		</form>
+		<p><a href="search.jsp">Fazer uma nova pesquisa utilizando Categoria e Tags</a></p>
 	    <div class="show-posts">
 			<c:if test="${posts.isEmpty()}">
 				<h2>Não existem Posts nos termos procurados</h2>

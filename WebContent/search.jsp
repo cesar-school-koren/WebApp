@@ -14,7 +14,6 @@
     <h2>Buscar postagem</h2>
     <form action="SearchPost" method="POST">
         <pre>
-        			O que deseja? : <input type="text" name="search" required>
                      <p>Selecione uma Categoria</p>
                      <select class="select-checkbox" name="categoria" required>
                      	<option value="0">Qualquer Categoria</option>
@@ -30,6 +29,7 @@
                      	<option value="SAUDE">Saúde</option>
                      	<option value="SOCIAL">Social</option>
                      	<option value="AUTONOMIA">Autonomia</option>
+                     	<option value="QUALQUER">Qualquer</option>
                      </select>
                      <input type="submit" value="enviar">
         </pre>

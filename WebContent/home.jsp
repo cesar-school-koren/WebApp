@@ -18,6 +18,10 @@
         <a href="DezAQuinze">Dez A Quinze Anos</a>
         <a href="QuinzeEmDiante">Quinze em Diante</a>
     </div>
+    <form action="SearchText" method="POST">
+		<p>Pesquisar : <input type="text" name="search" required></p>
+		<input type="submit" value="enviar">
+	</form>
     <h2 class="homePageTitle">Home Page</h2>
 </body>
 </html>

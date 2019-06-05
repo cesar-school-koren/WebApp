@@ -12,21 +12,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.school.koren.model.Post;
-import com.school.koren.model.Post.Tag;
-import com.school.koren.repository.CategoryHome;
 import com.school.koren.repository.PostHome;
 
 /**
- * Servlet implementation class SearchPost
+ * Servlet implementation class SearchText
  */
-@WebServlet("/SearchPost")
-public class SearchPost extends HttpServlet {
+@WebServlet("/SearchText")
+public class SearchText extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchPost() {
+    public SearchText() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,7 +34,7 @@ public class SearchPost extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -46,37 +44,18 @@ public class SearchPost extends HttpServlet {
 		// TODO Auto-generated method stub
 		try {
 			request.setCharacterEncoding("UTF-8");
-			CategoryHome categoryHome = new CategoryHome();
-			List<Tag> tags = new ArrayList<Tag>();
-			
-			// pega array de tags selecionadas
-			String[] tagsSelected = request.getParameterValues("tags");
-			
-			for(String tag : tagsSelected) {
-				if(tag.equals("QUALQUER")) {
-					tags.add(Tag.valueOf(tag));
-				}
-			}
-				
-			Integer categoryId = Integer.parseInt(request.getParameter("categoria"));
-			
-			Post post = new Post();
 			PostHome postHome = new PostHome();
-			if(categoryId != 0) {
-				post.setCategoryId(categoryHome.findById(categoryId));
-			}
-
-			post.setTags(tags);
 			List<Post> postagens = new ArrayList<>();
 			
-			postagens = postHome.findByExample(post);	
+			
+			String text = request.getParameter("search");
+			postagens = postHome.searchText(text);		
 			request.setAttribute("posts", postagens);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/searchResult.jsp");
 			rd.forward(request, response);
+		} catch(Exception e) {
 			
-		} catch (IOException e) {
-			// TODO: handle exception
 		}
 	}
 
