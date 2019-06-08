@@ -55,9 +55,15 @@ input[type="submit"]{
   object-fit: contain; 
 }
 
-input[class='texto']::placeholder {
+/*
+input[class="texto"]::placeholder {
   text-align: center;
-  font-family: CaviarDreams;
+  font-family: CaviarDreams; 
   font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
   line-height: 3.68;
+  color: #e4e4e4;
 }
+*/
