@@ -24,6 +24,6 @@
             </div>
         </pre>
     </form>
+    <img src="Images/formas.png" class="formas">
 </body>
-<img src="Images/formas.png" class="formas">
 </html>
