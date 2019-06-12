@@ -1,11 +1,12 @@
 @font-face{
   font-family: Hero-Regular;
-  src: url('Fonts/Hero/Hero-Regular.ttf');
+  src: url("Fonts/Hero/Hero-Regular.ttf");
+  src: url("Fonts/Hero/Hero-Regular.otf");
 }
 
 @font-face{
   font-family: CaviarDreams;
-  src: url('Fonts/CaviarDreams/CaviarDream.ttf');
+  src: url("Fonts/CaviarDreams/CaviarDream.ttf");
 }
 
 .inputs{
@@ -55,8 +56,7 @@ input[type="submit"]{
   object-fit: contain; 
 }
 
-/*
-input[class="texto"]::placeholder {
+input[type="text"]::placeholder {
   text-align: center;
   font-family: CaviarDreams; 
   font-weight: bold;
@@ -66,4 +66,3 @@ input[class="texto"]::placeholder {
   line-height: 3.68;
   color: #e4e4e4;
 }
-*/
