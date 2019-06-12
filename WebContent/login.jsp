@@ -5,7 +5,7 @@
 <%@ taglib prefix="s" tagdir="/WEB-INF/tags"%>
 <html>
 <head>
-    <link rel="stylesheet" href="inputPages.css" type="text/css">
+    <link rel="stylesheet" href="CSS/inputPages.css" type="text/css">
     <meta charset="UTF-8">
     <title>Login</title>
 </head>
@@ -17,10 +17,13 @@
     </c:if>
     <form action="Login" method="POST">
         <pre>
-            Username : <input type="text" name="username" required>
-            Password : <input type="password" name="password" required>
-                       <input type="submit" value="Login">
+            <div class="inputs">
+                <input type="text" name="username" placeholder="Username" class="texto" required>
+                <input type="password" name="password" class="texto" placeholder="Senha" required>
+                        <input type="submit" value="Login" class="btn">
+            </div>
         </pre>
     </form>
+    <img src="Images/formas.png" class="formas">
 </body>
 </html>
