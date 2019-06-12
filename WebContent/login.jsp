@@ -11,10 +11,10 @@
     <title>Login</title>
 </head>
 <body>
-	<s:isAnon/>
     <s:menu/>
+    <s:isAnon/>
     <c:if test="${not empty errorMessage}">
-    	<p><c:out value="Username não existe!"/></p>
+    	<p><c:out value="Username ou senha errados!"/></p>
     </c:if>
     <form action="Login" method="POST">
         <pre>

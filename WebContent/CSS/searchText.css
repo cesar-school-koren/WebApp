@@ -5,6 +5,7 @@
 }
 
 .container{
+	height: 30px;
 	margin: 1%;
 	text-align: center;
 	font-family: Hero;
@@ -12,7 +13,7 @@
 
 .barra-pesquisa {
   width: 554px;
-  height: 16px;
+  height: 30px;
   object-fit: contain;
   border-radius: 32px;
   border: solid 1px #e4e4e4;
@@ -29,4 +30,6 @@ button[name="submit"] {
   position: absolute;
   top: 0;
   right: 0;
+  width: 25px;
+  height: 32px;
 }

@@ -20,9 +20,10 @@
         <a href="DezAQuinze" class="Retngulo-20">10 A 15 Anos</a>
         <a href="QuinzeEmDiante" class="Retngulo-20">15 em Diante</a>
     </div>
+    
     <div class="container">
 		<form action="SearchText" method="POST" style="text-align:center" class="index-search-form">
-	 	<input class="barra-pesquisa" type="text" placeholder="Pesquisar" required>
+	 	<input name="search" class="barra-pesquisa" type="text" placeholder="Pesquisar" required>
 		<button name="submit" type="submit" class="">Ir</button>
 	 	</form>
     </div>
