@@ -6,16 +6,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Postagens do usuário</title>
     <link rel="stylesheet" type="text/css" href="CSS/menu.css">
+<title>Notícias</title>
 </head>
 <body>
-	<s:autentication/>
 	<s:menu/>
-    <!-- mostra os post dos usuarios -->
+    <h4 class="categoria">Notícias</h4>
+    <!-- mostra os post da categoria -->
 	<div class="show-posts">
 		<c:if test="${posts.isEmpty()}">
-			<h2>Esse usuario nao tem postagens</h2>
+			<h2>Essa categoria não tem postagens</h2>
 		</c:if>
 		<c:if test="${posts.isEmpty() == false}">
 			<c:forEach items="${posts}" var="post">

@@ -7,6 +7,7 @@
 <head>
     <link rel="stylesheet" href="CSS/menu.css" type="text/css">
 	<link rel="stylesheet" href="CSS/inputPages.css" type="text/css">
+	    <link rel="stylesheet" type="text/css" href="CSS/menu.css">
 	<meta charset="UTF-8">
 	<title>Register</title>
 </head>

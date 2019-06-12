@@ -6,6 +6,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="inputPages.css" type="text/css">
+        <link rel="stylesheet" type="text/css" href="CSS/menu.css">
     <meta charset="UTF-8">
 	<title>Busca</title>
 </head>

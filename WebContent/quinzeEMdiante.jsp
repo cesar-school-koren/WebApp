@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Quinze em Diante</title>
+    <link rel="stylesheet" type="text/css" href="CSS/menu.css">
 </head>
 <body>
 	<s:menu/>

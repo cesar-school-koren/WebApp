@@ -6,6 +6,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="CSS/menu.css">
 	<title>Resultado da pesquisa</title>
 </head>
 <body>

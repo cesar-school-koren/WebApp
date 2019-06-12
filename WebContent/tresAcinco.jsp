@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Tres a Cinco Anos</title>
+    <link rel="stylesheet" type="text/css" href="CSS/menu.css">
 </head>
 <body>
 	<s:menu/>
