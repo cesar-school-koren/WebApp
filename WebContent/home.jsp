@@ -7,7 +7,6 @@
 <head>
     <link rel="stylesheet" type="text/css" href="CSS/home.css">
     <link rel="stylesheet" type="text/css" href="CSS/menu.css">
-    <link rel="stylesheet" type="text/css" href="CSS/searchText.css">
 	<meta charset="UTF-8">
     <title>Home Page</title>
 </head>
