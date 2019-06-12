@@ -1,0 +1,32 @@
+@font-face{
+	font-family: Hero;
+	src: url('Fonts/Hero/Hero-Regular.otf');
+ 	src: url('Fonts/Hero/Hero-Regular.ttf');
+}
+
+.container{
+	margin: 1%;
+	text-align: center;
+	font-family: Hero;
+}
+
+.barra-pesquisa {
+  width: 554px;
+  height: 16px;
+  object-fit: contain;
+  border-radius: 32px;
+  border: solid 1px #e4e4e4;
+  background-color: #ffffff;
+  text-align:center;
+}
+
+form.index-search-form {
+  position: relative;
+  display: inline-flex;
+}
+
+button[name="submit"] {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

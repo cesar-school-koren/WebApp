@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="884.363" height="592.25" viewBox="0 0 884.363 592.25">
+    <defs>
+        <style>
+            .cls-1{fill:url(#linear-gradient)}.cls-2{fill:url(#linear-gradient-2)}.cls-3{fill:url(#linear-gradient-3)}.cls-4{fill:url(#linear-gradient-4)}.cls-5,.cls-6{fill:#fff;font-family:Hero}.cls-5{font-size:130px}.cls-6{font-size:40px}
+        </style>
+        <linearGradient id="linear-gradient" x1=".916" x2=".013" y1="1.147" y2=".244" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#f2dcd1"/>
+            <stop offset=".311" stop-color="#f4bab1"/>
+            <stop offset=".508" stop-color="#f7a39b"/>
+            <stop offset="1" stop-color="#f37771"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-2" x2="1" y1=".5" y2=".5" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#f2dcd1"/>
+            <stop offset="1" stop-color="#f7a39b"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-3" x2="1" y1=".5" y2=".5" xlink:href="#linear-gradient"/>
+        <linearGradient id="linear-gradient-4" x1="-.087" x2="1.079" y1=".445" y2=".555" xlink:href="#linear-gradient"/>
+    </defs>
+    <g id="menu_orgânico" data-name="menu orgânico" transform="translate(-114.638 -182.75)">
+        <g id="Grupo_5" data-name="Grupo 5">
+            <path id="Caminho_10" d="M866.348 648.4c61.335-72.6 29.652-188.53-57.135-219.055a255.389 255.389 0 0 0-58.9-12.762c-141.633-14.524-214.3-174.508-298.415-211.14-91.291-39.758-218.83 73.8-107.05 209.962 101.365 123.476 24.612 220.353 115.09 312.919 65.845 67.364 114.736 14.839 187.973-26.942 66.601-37.993 155.666 21.318 218.437-52.982z" class="cls-1" data-name="Caminho 10"/>
+            <path id="Caminho_11" d="M598.6 613.943c66.906-4.973 131.554-30.418 181.441-78.511 60.812-58.626 108.95-147.1 38.141-258C684.7 68.359 524.831 271.7 524.831 271.7s-51.271 77.033-97.719 96.759-125.673 11.493-158.945 59.989 4.87 73.627 4.624 111.854-85.637 157.062 13.732 218.966S476.767 680.4 476.767 680.4s21.942-59.034 121.833-66.457z" class="cls-2" data-name="Caminho 11"/>
+            <path id="Caminho_12" d="M848.723 619.717c-26.878 38.431-5.808 94.342-73.181 116.673s-141.634-49.459-202.275-66.718c-60.642-17.313-166.045 19.409-166.045 19.409s-97.8 24.978-180.331-11.855c-62.7-27.955-116.555-91.585-111.982-228.935.052-1.048.052-2.04.155-3.033 6.886-166.3 116.349-216.529 217.949-226.95 83.87-8.657 166.867 17.479 237.889 66.056C676.974 356.871 740.185 314.8 740.185 314.8s189.787-69.364 247.037 72.783c57.301 142.147-111.673 193.757-138.499 232.134z" class="cls-3" data-name="Caminho 12"/>
+            <path id="Caminho_13" d="M697.8 764.176c0 5.706-4.311 10.332-9.63 10.332s-9.63-4.626-9.63-10.332 4.312-10.332 9.63-10.332 9.63 4.626 9.63 10.332z" class="cls-4" data-name="Caminho 13"/>
+            <path id="Caminho_14" d="M273.042 201.206c0 10.194-7.7 18.457-17.2 18.457s-17.2-8.263-17.2-18.457 7.7-18.456 17.2-18.456 17.2 8.263 17.2 18.456z" class="cls-4" data-name="Caminho 14"/>
+        </g>
+        <g id="FAQ">
+            <text id="F.A.Q" class="cls-5" transform="translate(536.638 496.329)">
+                <tspan x="-152.685" y="0">F.A.Q</tspan>
+            </text>
+            <text id="Dúvidas_Frequentes" class="cls-6" data-name="Dúvidas Frequentes" transform="translate(536.638 559.329)">
+                <tspan x="-193.98" y="0">Dúvidas Frequentes</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

@@ -55,7 +55,8 @@ public class SearchText extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/searchResult.jsp");
 			rd.forward(request, response);
 		} catch(Exception e) {
-			
+			RequestDispatcher rd = request.getRequestDispatcher("/searchResult.jsp");
+			rd.forward(request, response);
 		}
 	}
 

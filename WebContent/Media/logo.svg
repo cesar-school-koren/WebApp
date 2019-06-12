@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="204" height="275.608" viewBox="0 0 204 275.608">
+    <defs>
+        <style>
+            .cls-1{fill:url(#linear-gradient)}.cls-2{fill:#fff}.cls-3{fill:#707070;font-size:77px;font-family:Hero;letter-spacing:.1em}
+        </style>
+        <linearGradient id="linear-gradient" x2="1" y1=".5" y2=".5" gradientUnits="objectBoundingBox">
+            <stop offset=".002" stop-color="#f6a49c"/>
+            <stop offset=".31" stop-color="#f48c85"/>
+            <stop offset=".613" stop-color="#f47c76"/>
+            <stop offset=".849" stop-color="#f47771"/>
+        </linearGradient>
+    </defs>
+    <g id="logo" transform="translate(-857.678 -310.82)">
+        <circle id="Elipse_1" cx="90.605" cy="90.605" r="90.605" class="cls-1" data-name="Elipse 1" transform="translate(870.327 310.82)"/>
+        <circle id="Elipse_2" cx="10.304" cy="10.304" r="10.304" class="cls-2" data-name="Elipse 2" transform="translate(949.205 345.578)"/>
+        <g id="Grupo_3" data-name="Grupo 3" transform="translate(930.49 368.55)">
+            <g id="Grupo_2" data-name="Grupo 2">
+                <path id="Caminho_7" d="M945.475 387.844c26.12-3.033 32.331 18.243 21.569 31.834-7 8.843-8.018 21.376 1.889 20.606 12.177-.945 7.486-10.309 7.485-12.183 0 0 .005 7.494-6.552 7.5-6.625.005-6.565-10.3.923-17.8 17.475-17.5 6.547-45.376-24.155-41.81-28.626 3.324-18.694 33.046-18.694 33.046.072-.473.152-.933.238-1.384-.296-7.642 2.177-18.053 17.297-19.809z" class="cls-2" data-name="Caminho 7" transform="translate(-926.274 -375.681)"/>
+                <path id="Caminho_8" d="M940.5 442.529s.932-7.494 10.288-22.49a11.308 11.308 0 0 0 1.933-7.115c-.039.064-.074.128-.114.192-11 17.625-12.092 26.435-12.092 26.435a25.561 25.561 0 0 0-.112 4.182q.036-.593.097-1.204z" class="cls-2" data-name="Caminho 8" transform="translate(-927.823 -379.776)"/>
+            </g>
+            <path id="Caminho_9" d="M928.813 412.818s-8.5-27.936 16.785-30.872c27.116-3.149 35.236 21.6 24.062 35.7-7.27 9.181-11.168 20.917-.956 22.369 10.634 1.511 7.771-11.676 7.771-11.676s9.243 5.342 7.305 16.04c-3.4 18.8-48.124 19-45.227-8.233 0 0 .968-7.781 10.681-23.348 9.494-15.207-16.549-25.267-20.421.02z" class="cls-2" data-name="Caminho 9" transform="translate(-926.402 -376.34)"/>
+        </g>
+        <text id="MILA" class="cls-3" transform="translate(959.678 567.428)">
+            <tspan x="-101.525" y="0">MILA</tspan>
+        </text>
+    </g>
+</svg>
