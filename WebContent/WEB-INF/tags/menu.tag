@@ -19,12 +19,12 @@
 				<!-- <li><c:out value="${sessionScope.conta.getUsername()}" /></li>-->
 				<li><a href="logout.jsp">Logout</a></li>
 				<li><a href="home.jsp">Home</a></li>
-				<!-- <li><a href="createPost.jsp">Fazer postagem</a></li> -->
+				<li><a href="createPost.jsp">Fazer postagem</a></li>
 		    	<li><a href="UserPosts">Meus Posts</a></li>
 		    	<li> <a href="search.jsp">Search</a></li>
 		    </ul>
 		</div>  
-		<p></p>
+		<p></p>		
 	</c:otherwise>
 </c:choose>
 
