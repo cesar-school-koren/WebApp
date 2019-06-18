@@ -66,3 +66,14 @@ input[type="text"]::placeholder {
   line-height: 3.68;
   color: #e4e4e4;
 }
+
+input[type="password"]::placeholder {
+  text-align: center;
+  font-family: CaviarDreams; 
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  line-height: 3.68;
+  color: #e4e4e4;
+}

@@ -23,16 +23,17 @@
     <c:if test="${not empty errorMessageEmail}">
     	<p><c:out value="Email já existe!"/></p>
     </c:if>
+    
     <form action="Register" method="POST">
-        <pre>
-            <div class="input">
+       <div class="input" style="padding-left: 200px;">
+        	<pre>
                     <input type="text" name="username" placeholder="Username" class="texto" required>
                     <input type="text" name="email" placeholder="Email" class="texto" required>
                     <input type="password" name="password1" placeholder="Senha" class="texto" required>
                     <input type="password" name="password2" placeholder="Digite Novamente" class="texto" required>
-                          <input type="submit" value="register" class="btn">
-            </div>                          
-        </pre>
+                    <input type="submit" value="register" class="btn">                       
+        	</pre>
+        </div>   
     </form>
     <img src="Images/formas.png" class="formas">
 </body>

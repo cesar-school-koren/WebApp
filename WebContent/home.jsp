@@ -20,7 +20,7 @@
 		  <input type="radio" name="slides" id="slides_3"/>
 		  <ul>
 		    <li class="item-1">
-				<a href="FAQ"><img src="Media/faq36.png"/></a>
+				<a href="faq.jsp"><img src="Media/faq36.png"/></a>
 		    </li>
 		    <li class="item-2"><a href="Noticias"><img src="Media/noticias.png"/></a>
 		    </li>
