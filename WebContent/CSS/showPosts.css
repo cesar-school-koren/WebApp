@@ -8,7 +8,13 @@
 
 @font-face{
   font-family: CaviarDreams;
-  src: url("Fonts/CaviarDreams/CaviarDream.ttf");
+  src: url("Fonts/CaviarDreams/CaviarDreams.ttf");
+}
+
+.post{
+	text-align: center;
+	background-color: #ffd2b7;
+	margin-bottom: 10px;
 }
 
 .btn-verPost {
@@ -41,6 +47,12 @@ h4{
   letter-spacing: normal;
   text-align: center;
   color: #f57f43;
+}
+
+.post{
+	text-align: center;
+	background-color: #ffd2b7;
+	margin-bottom: 50px;
 }
 
 .titulo{
@@ -93,6 +105,11 @@ span {
   color: #707070;
 }
 
+.table {
+	display: table;   /* Allow the centering to work */
+	margin: 0 auto;
+}
+
 .tags {
   text-align: center;
   list-style: none;
@@ -102,7 +119,8 @@ span {
 }
 
 .tags li {
-  float: center; 
+  float: center;
+  display: inline;
 }
 
 .tag {
