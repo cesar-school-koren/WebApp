@@ -13,7 +13,7 @@ Desenvolvido em Java, utilizando Hibernate, JSP, JPA, Servlet e um banco de dado
 
 ## Antes de executar
 
-Por padrão está sendo usado o usuário padrão do PostgreSQL chamado postgres, com a senha "admin". (Teste via banco de dados local)
+Por padrão está sendo usado o usuário padrão do PostgreSQL chamado "postgres", com a senha "admin". (Teste via banco de dados local)
 
 _Caso queira usar outra configuração do banco de dados, se deve modificar o arquivo [hibernate.cfg.xml](./src/hibernate.cfg.xml)._
 
