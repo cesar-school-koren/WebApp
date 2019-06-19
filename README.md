@@ -6,7 +6,7 @@ Desenvolvido em Java, utilizando Hibernate, JSP, JPA, Servlet e um banco de dado
 
 # Rodando o programa
 
-###Dependencias: 
+### Dependencias: 
 - [Apache Tomcat 7 ou mais](https://tomcat.apache.org/)
 - [PostgreSQL](https://www.postgresql.org/)
 - Eclipse Java EE ou qualquer outra IDE que tenha suporte à projetos Maven.
