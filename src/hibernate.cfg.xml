@@ -5,14 +5,15 @@
  <session-factory>
   <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
   <!-- Conexão com banco de dados na AWS --> 
+  <!-- 
   <property name="hibernate.connection.password">2NR5s6EtP32vYRw</property>
   <property name="hibernate.connection.url">jdbc:postgresql://ec2-54-207-6-58.sa-east-1.compute.amazonaws.com:5432/koren</property>
-  
+  -->
   <!-- Conexão de banco de dados local -->
-  <!-- 
+  
   <property name="hibernate.connection.password">admin</property>
   <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/postgres</property>
-   -->
+   
   <!-- UTF8 encoding -->
   <property name="hibernate.connection.CharSet">utf8</property>
   <property name="hibernate.connection.characterEncoding">utf8</property>

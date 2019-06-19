@@ -67,11 +67,18 @@ public class SearchPost extends HttpServlet {
 			if(categoryId != 0) {
 				post.setCategoryId(categoryHome.findById(categoryId));
 			}
-
-			post.setTags(tags);
+			
+			if(tags.size()!= 0)
+				post.setTags(tags);
+						
 			List<Post> postagens = new ArrayList<>();
 			
-			postagens = postHome.findByExample(post);	
+			if(categoryId == 0 && tags.size() == 0) {
+				postagens = postHome.getAll();
+			}else {
+				postagens = postHome.findByExample(post);
+			}
+				
 			request.setAttribute("posts", postagens);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/searchResult.jsp");

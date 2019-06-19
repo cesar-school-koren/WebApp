@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -173,6 +174,20 @@ public class PostHome {
 			log.error("find by example failed", re);
 			throw re;
 		}
+	}
+	
+	public List<Post> getAll() {
+		Session session = sessionFactory.getCurrentSession();
+		session.beginTransaction();
+	    CriteriaBuilder cb = session.getCriteriaBuilder();
+	    CriteriaQuery<Post> cq = cb.createQuery(Post.class);
+	    Root<Post> rootEntry = cq.from(Post.class);
+	    CriteriaQuery<Post> all = cq.select(rootEntry);
+	 
+	    TypedQuery<Post> allQuery = session.createQuery(all);
+	    List<Post> resultado = allQuery.getResultList();
+	    session.close();
+	    return resultado;
 	}
 	
 	

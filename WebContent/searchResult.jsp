@@ -12,10 +12,15 @@
 </head>
 <body>
 	<s:menu/>
-		<p><a href="search.jsp">Fazer uma nova pesquisa utilizando Categoria e Tags</a></p>
+		<h4>Resultado da Pesquisa</h4>
+		<div style="text-align: center;">
+			<div>
+				<a href="search.jsp" style="color: #707070; text-decoration: underline;">Fazer uma nova pesquisa utilizando Categoria e Tags</a>
+			</div>
+		</div>
 	    <div class="show-posts">
 			<c:if test="${posts.isEmpty()}">
-				<h2>Não existem Posts nos termos procurados</h2>
+				<div class = "topico">Não existem Posts nos termos procurados</div>
 			</c:if>
 		<c:if test="${posts.isEmpty() == false}">
 				<c:forEach items="${posts}" var="post">
