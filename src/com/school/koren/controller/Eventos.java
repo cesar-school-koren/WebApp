@@ -34,11 +34,12 @@ public class Eventos extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-			CategoryHome categoryHome = new CategoryHome();
-			
+		CategoryHome categoryHome = new CategoryHome();
+		PostHome postHome = new PostHome();
+		
+		try {	
 			Post post = new Post();
-			PostHome postHome = new PostHome();
+			
 			post.setCategoryId(categoryHome.findById(7));
 			
 			List<Post> postagens = new ArrayList<>();
@@ -54,6 +55,9 @@ public class Eventos extends HttpServlet {
 			
 		} catch (IOException e) {
 			// TODO: handle exception
+		}finally {
+			postHome.terminate();
+			categoryHome.terminate();
 		}
 	}
 

@@ -2,7 +2,6 @@ package com.school.koren.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -73,6 +72,9 @@ public class ShowPost extends HttpServlet {
 			e.printStackTrace();
 			out.println("Postagem sem comentarios");
 			response.sendRedirect(response.encodeURL("post.jsp")); 
+		}finally {
+			postHome.terminate();
+			commentaryHome.terminate();
 		}
 	}
 

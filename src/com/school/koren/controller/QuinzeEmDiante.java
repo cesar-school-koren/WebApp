@@ -34,12 +34,12 @@ public class QuinzeEmDiante extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		CategoryHome categoryHome = new CategoryHome();
+		PostHome postHome = new PostHome();
+		
 		try {
-			CategoryHome categoryHome = new CategoryHome();
-			
 			Post post = new Post();
-			PostHome postHome = new PostHome();
+			
 			post.setCategoryId(categoryHome.findById(5));
 			
 			List<Post> postagens = new ArrayList<>();
@@ -55,6 +55,9 @@ public class QuinzeEmDiante extends HttpServlet {
 			
 		} catch (IOException e) {
 			// TODO: handle exception
+		}finally {
+			postHome.terminate();
+			categoryHome.terminate();
 		}
 	}
 

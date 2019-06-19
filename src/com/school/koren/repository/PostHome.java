@@ -176,11 +176,14 @@ public class PostHome {
 	}
 	
 	
+	@SuppressWarnings("deprecation")
 	public List<Post> searchText(String texto){
 		Session session = sessionFactory.getCurrentSession();
 		session.beginTransaction();
 		Criteria crit = session.createCriteria(Post.class);
 		crit.add(Restrictions.ilike("title", texto, MatchMode.ANYWHERE));
+		
+		@SuppressWarnings("unchecked")
 		List<Post> results = crit.list();
 		
 		session.close();

@@ -41,10 +41,10 @@ public class SearchText extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		PostHome postHome = new PostHome();
 		try {
 			request.setCharacterEncoding("UTF-8");
-			PostHome postHome = new PostHome();
+			
 			List<Post> postagens = new ArrayList<>();
 			
 			
@@ -58,6 +58,8 @@ public class SearchText extends HttpServlet {
 			System.out.println(e);
 			RequestDispatcher rd = request.getRequestDispatcher("/searchResult.jsp");
 			rd.forward(request, response);
+		}finally {
+			postHome.terminate();
 		}
 	}
 

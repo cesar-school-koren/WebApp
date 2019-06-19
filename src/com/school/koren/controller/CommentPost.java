@@ -94,6 +94,10 @@ public class CommentPost extends HttpServlet {
 		} catch (IOException e) {
 			e.printStackTrace();
 			out.println("Por favor, preencha os campos corretamente.");
+		}finally{
+			postHome.terminate();
+			accountHome.terminate();
+			commentaryHome.terminate();
 		}
 	}
 

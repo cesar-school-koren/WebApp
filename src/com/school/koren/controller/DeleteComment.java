@@ -10,7 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.school.koren.model.Commentary;
 import com.school.koren.repository.CommentaryHome;
@@ -47,13 +46,13 @@ public class DeleteComment extends HttpServlet {
 		
 		PrintWriter writer = response.getWriter();
 		
-		HttpSession session = request.getSession(false);
+		CommentaryHome commentaryHome= new CommentaryHome();
 		
 		System.out.println("vou entrar no try");
 		try {
 			int commId = Integer.parseInt(request.getParameter("commentId"));
 			System.out.println(commId);
-			CommentaryHome commentaryHome= new CommentaryHome();
+
 			Commentary commentary = commentaryHome.findById(commId);
 			System.out.println(commentary.getAccountId());
 			commentaryHome.delete(commentary);
@@ -63,6 +62,8 @@ public class DeleteComment extends HttpServlet {
 			writer.print("Houve um problema ao deletar o comentario!");
 			RequestDispatcher rd = request.getRequestDispatcher("post.jsp");
 			rd.include(request, response);
+		}finally{
+			commentaryHome.terminate();
 		}
 		
 	}

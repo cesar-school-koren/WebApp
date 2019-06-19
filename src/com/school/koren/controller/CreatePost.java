@@ -1,11 +1,11 @@
 package com.school.koren.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -53,6 +53,8 @@ public class CreatePost extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		Account user = (Account) session.getAttribute("conta");
 		
+		PrintWriter out = response.getWriter();
+		
 		String titulo = request.getParameter("titulo");
 		String texto = request.getParameter("texto");
 		Integer categoryId = Integer.parseInt(request.getParameter("categoria"));
@@ -66,26 +68,34 @@ public class CreatePost extends HttpServlet {
 		CategoryHome categoryHome = new CategoryHome(); // instancia objeto CategoryDAO
 		List<Tag> tags = new ArrayList<Tag>(); // instancia uma lista de enum Tag
 		
-		// pega array de tags selecionadas
-		String[] tagsSelected = request.getParameterValues("tags");
-		for(int i = 0; i < tagsSelected.length; i++)
-			tags.add(Tag.valueOf(tagsSelected[i]));
+		try {
+			// pega array de tags selecionadas
+			String[] tagsSelected = request.getParameterValues("tags");
+			for(int i = 0; i < tagsSelected.length; i++)
+				tags.add(Tag.valueOf(tagsSelected[i]));
+			
+			conta.setUsername(user.getUsername());  
+			
 		
-		conta.setUsername(user.getUsername());  
-		
+			// set atributos do objeto Post
+			post.setAccountId(accountHome.findByExample(conta).get(0));
+			post.setCategoryId(categoryHome.findById(categoryId));
+			post.setCreationDate(agora);
 	
-		// set atributos do objeto Post
-		post.setAccountId(accountHome.findByExample(conta).get(0));
-		post.setCategoryId(categoryHome.findById(categoryId));
-		post.setCreationDate(agora);
-
-		
-		// set o resto dos atributos
-		post.setTags(tags);
-		post.setTitle(titulo);
-		post.setText(texto);
-		posthome.persist(post);
-		response.sendRedirect("home.jsp");
+			
+			// set o resto dos atributos
+			post.setTags(tags);
+			post.setTitle(titulo);
+			post.setText(texto);
+			posthome.persist(post);
+			response.sendRedirect("home.jsp");
+		}catch(IOException e) {
+			e.printStackTrace();
+			out.println("Por favor, preencha os campos corretamente.");
+		}finally{
+			posthome.terminate();
+			accountHome.terminate();
+		}
 	}
 
 }

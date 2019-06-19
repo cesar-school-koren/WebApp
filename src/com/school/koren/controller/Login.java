@@ -68,19 +68,20 @@ public class Login extends HttpServlet {
 					session.setAttribute("conta", lista.get(0));
 					response.sendRedirect("home.jsp");
 				}else {
-					System.out.println("Senha errada!");
-					out.print("Senha errada!");
+					out.print("Usuario ou senha errados!");
 					RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 					rd.include(request, response);
 				}
 			}catch (Exception e){
-				request.setAttribute("errorMessage", "Username não existe!");
+				request.setAttribute("errorMessage", "Usuario ou senha errados!");
 				request.getRequestDispatcher("login.jsp").include(request, response);
+			}finally {
+				accountHome.terminate();
 			}
 
 		} catch (IOException e) {
-			System.out.println("Usuario nao existe!");
-			out.print("Usuario nao existe!");
+			System.out.println("Usuário ou Senha Errados!");
+			out.print("Usuario ou Senha errados existe!");
 			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 			rd.include(request, response);
 		}

@@ -34,9 +34,11 @@ public class Trabalho extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PostHome postHome = new PostHome();
+		
 		try {
 			Post post = new Post();
-			PostHome postHome = new PostHome();
+			
 			List<Tag> tags = new ArrayList<Tag>();
 			tags.add(Tag.TRABALHO);
 			
@@ -55,6 +57,8 @@ public class Trabalho extends HttpServlet {
 			
 		} catch (IOException e) {
 			// TODO: handle exception
+		}finally {
+			postHome.terminate();
 		}
 	}
 

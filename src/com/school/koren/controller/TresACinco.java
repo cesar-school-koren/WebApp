@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.school.koren.model.Category;
 import com.school.koren.model.Post;
 import com.school.koren.repository.CategoryHome;
 import com.school.koren.repository.PostHome;
@@ -36,12 +35,11 @@ public class TresACinco extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		CategoryHome categoryHome = new CategoryHome();
+		PostHome postHome = new PostHome();
 		try {
-			CategoryHome categoryHome = new CategoryHome();
-			
 			Post post = new Post();
-			PostHome postHome = new PostHome();
+			
 			post.setCategoryId(categoryHome.findById(2));
 			
 			List<Post> postagens = new ArrayList<>();
@@ -56,7 +54,10 @@ public class TresACinco extends HttpServlet {
 			rd.forward(request, response);
 			
 		} catch (IOException e) {
-			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			categoryHome.terminate();
+			postHome.terminate();
 		}
 		
 	}

@@ -43,10 +43,12 @@ public class SearchPost extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		PostHome postHome = new PostHome();
+		CategoryHome categoryHome = new CategoryHome();
+		
 		try {
 			request.setCharacterEncoding("UTF-8");
-			CategoryHome categoryHome = new CategoryHome();
+			
 			List<Tag> tags = new ArrayList<Tag>();
 			
 			// pega array de tags selecionadas
@@ -61,7 +63,7 @@ public class SearchPost extends HttpServlet {
 			Integer categoryId = Integer.parseInt(request.getParameter("categoria"));
 			
 			Post post = new Post();
-			PostHome postHome = new PostHome();
+			
 			if(categoryId != 0) {
 				post.setCategoryId(categoryHome.findById(categoryId));
 			}
@@ -76,7 +78,10 @@ public class SearchPost extends HttpServlet {
 			rd.forward(request, response);
 			
 		} catch (IOException e) {
-			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			postHome.terminate();
+			categoryHome.terminate();
 		}
 	}
 

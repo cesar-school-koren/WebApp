@@ -2,9 +2,7 @@ package com.school.koren.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -49,14 +47,13 @@ public class UserPosts extends HttpServlet {
 		
 		Account conta = (Account) session.getAttribute("conta");
 		Account findConta = new Account();
+		PostHome postHome = new PostHome();
+		AccountHome accountHome = new AccountHome();
 		findConta.setUsername(conta.getUsername());
 		
-		try {
-			AccountHome accountHome = new AccountHome();
-
-			
+		try {			
 			Post post = new Post();
-			PostHome postHome = new PostHome();
+			
 			post.setAccountId(accountHome.findByExample(findConta).get(0));
 			
 			List<Post> postagens = new ArrayList<>();
@@ -65,15 +62,6 @@ public class UserPosts extends HttpServlet {
 				postagens.add(postagem);
 			}
 			
-			
-//			conta = accountHome.findByExample(conta).get(0);
-//			
-//			List<Post> postagens = new ArrayList<>();
-			
-//			for (Post postagem : conta.getPosts()) {
-//				postagens.add(postagem);
-//			}
-			
 			request.setAttribute("posts", postagens);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/userPost.jsp");
@@ -81,6 +69,9 @@ public class UserPosts extends HttpServlet {
 			
 		} catch (IOException e) {
 			// TODO: handle exception
+		}finally {
+			accountHome.terminate();
+			postHome.terminate();
 		}
 		
 	}
