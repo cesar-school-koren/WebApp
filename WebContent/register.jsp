@@ -5,7 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="inputPages.css" type="text/css">
+    <link rel="stylesheet" href="CSS/menu.css" type="text/css">
+	<link rel="stylesheet" href="CSS/inputPages.css" type="text/css">
 	<meta charset="UTF-8">
 	<title>Register</title>
 </head>
@@ -21,14 +22,18 @@
     <c:if test="${not empty errorMessageEmail}">
     	<p><c:out value="Email já existe!"/></p>
     </c:if>
+    
     <form action="Register" method="POST">
-        <pre>
-            Username : <input type="text" name="username" required>
-            Email : <input type="text" name="email" required>
-            Password : <input type="password" name="password1" required>
-            Type Again : <input type="password" name="password2" required>
-      					<input type="submit" value="register">
-        </pre>
+       <div class="input" style="padding-left: 200px;">
+        	<pre>
+                    <input type="text" name="username" placeholder="Username" class="texto" required>
+                    <input type="text" name="email" placeholder="Email" class="texto" required>
+                    <input type="password" name="password1" placeholder="Senha" class="texto" required>
+                    <input type="password" name="password2" placeholder="Digite Novamente" class="texto" required>
+                    <input type="submit" value="register" class="btn">                       
+        	</pre>
+        </div>   
     </form>
+    <img src="Images/formas.png" class="formas">
 </body>
 </html>

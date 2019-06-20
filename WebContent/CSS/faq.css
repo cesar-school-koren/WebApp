@@ -1,0 +1,10 @@
+@font-face{
+	font-family: Hero;
+	src: url('Fonts/Hero/Hero-Regular.otf');
+ 	src: url('Fonts/Hero/Hero-Regular.ttf');
+}
+
+body {
+   margin: 0px;
+   background-image: url("../Media/faqBg.png");
+}

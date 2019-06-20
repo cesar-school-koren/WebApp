@@ -35,11 +35,13 @@ public class DezAQuinze extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		PostHome postHome = new PostHome();
+		CategoryHome categoryHome = new CategoryHome();
+		
 		try {
-			CategoryHome categoryHome = new CategoryHome();
 			
 			Post post = new Post();
-			PostHome postHome = new PostHome();
+
 			post.setCategoryId(categoryHome.findById(4));
 			
 			List<Post> postagens = new ArrayList<>();
@@ -55,6 +57,9 @@ public class DezAQuinze extends HttpServlet {
 			
 		} catch (IOException e) {
 			// TODO: handle exception
+		}finally{
+			postHome.terminate();
+			categoryHome.terminate();
 		}
 	}
 

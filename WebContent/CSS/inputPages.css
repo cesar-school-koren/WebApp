@@ -1,0 +1,79 @@
+@font-face{
+  font-family: Hero-Regular;
+  src: url("Fonts/Hero/Hero-Regular.ttf");
+  src: url("Fonts/Hero/Hero-Regular.otf");
+}
+
+@font-face{
+  font-family: CaviarDreams;
+  src: url("Fonts/CaviarDreams/CaviarDreams.ttf");
+}
+
+.inputs{
+  text-align: center;
+}
+
+input[type="submit"]{
+  width: 326px;
+  height: 59px;
+  object-fit: contain;
+  border-radius: 63px;
+  box-shadow: 0 3px 6px 0
+  rgba(0, 0, 0, 0.16);
+  border: solid 1px #e4e4e4;
+  background: #25292e;
+  text-align: center;
+  color: #ffffff;
+  font-family: CaviarDreams;
+}
+
+.texto{
+  width: 598px;
+  height: 59px;
+  border-radius: 63px;
+  box-shadow: 0 3px 6px 0
+  rgba(0,0,0,0.16);
+  border: solid 1px #e4e4e4;
+  background-color: #ffffff;
+  font-family: Hero-Regular;
+}
+
+.select-checkbox option::before {
+  content: "\2610";
+  width: 1.3em;
+  text-align: center;
+  display: inline-block;
+}
+.select-checkbox option:checked::before {
+  content: "\2611";
+}
+
+.formas{
+  width: 100%;
+  height: 31.7%;
+  bottom: 0%;
+  position: fixed;
+  object-fit: contain; 
+}
+
+input[type="text"]::placeholder {
+  text-align: center;
+  font-family: CaviarDreams; 
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  line-height: 3.68;
+  color: #e4e4e4;
+}
+
+input[type="password"]::placeholder {
+  text-align: center;
+  font-family: CaviarDreams; 
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  line-height: 3.68;
+  color: #e4e4e4;
+}

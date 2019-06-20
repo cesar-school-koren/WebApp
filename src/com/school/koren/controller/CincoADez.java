@@ -35,11 +35,11 @@ public class CincoADez extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-			CategoryHome categoryHome = new CategoryHome();
-			
-			Post post = new Post();
-			PostHome postHome = new PostHome();
+		CategoryHome categoryHome = new CategoryHome();
+		Post post = new Post();
+		PostHome postHome = new PostHome();
+		
+		try {			
 			post.setCategoryId(categoryHome.findById(3));
 			
 			List<Post> postagens = new ArrayList<>();
@@ -55,6 +55,9 @@ public class CincoADez extends HttpServlet {
 			
 		} catch (IOException e) {
 			// TODO: handle exception
+		}finally{
+			postHome.terminate();
+			categoryHome.terminate();
 		}
 		
 	}

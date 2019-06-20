@@ -47,16 +47,18 @@ public class DeletePost extends HttpServlet {
 		PrintWriter writer = response.getWriter();
 		
 		HttpSession session = request.getSession(false);
+		PostHome postHome = new PostHome();
 		
 		try {
 			Post post = (Post) session.getAttribute("post");
-			PostHome postHome = new PostHome();
 			postHome.delete(post);
 			response.sendRedirect("home.jsp");
 		} catch (IOException e) {
 			writer.print("Houve um problema ao deletar o post!");
 			RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
 			rd.include(request, response);
+		}finally{
+			postHome.terminate();
 		}
 	}
 

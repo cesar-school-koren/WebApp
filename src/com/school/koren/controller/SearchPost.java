@@ -43,37 +43,52 @@ public class SearchPost extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		PostHome postHome = new PostHome();
+		CategoryHome categoryHome = new CategoryHome();
+		
 		try {
-			CategoryHome categoryHome = new CategoryHome();
+			request.setCharacterEncoding("UTF-8");
+			
 			List<Tag> tags = new ArrayList<Tag>();
 			
 			// pega array de tags selecionadas
 			String[] tagsSelected = request.getParameterValues("tags");
-			for(int i = 0; i < tagsSelected.length; i++)
-				tags.add(Tag.valueOf(tagsSelected[i]));
 			
+			for(String tag : tagsSelected) {
+				if(!tag.equals("QUALQUER")) {
+					tags.add(Tag.valueOf(tag));
+				}
+			}
+				
 			Integer categoryId = Integer.parseInt(request.getParameter("categoria"));
-			System.out.println(categoryId);
 			
 			Post post = new Post();
-			PostHome postHome = new PostHome();
+			
 			if(categoryId != 0) {
 				post.setCategoryId(categoryHome.findById(categoryId));
 			}
-
-			post.setTags(tags);
+			
+			if(tags.size()!= 0)
+				post.setTags(tags);
+						
 			List<Post> postagens = new ArrayList<>();
 			
-			postagens = postHome.findByExample(post);
-						
+			if(categoryId == 0 && tags.size() == 0) {
+				postagens = postHome.getAll();
+			}else {
+				postagens = postHome.findByExample(post);
+			}
+				
 			request.setAttribute("posts", postagens);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/searchResult.jsp");
 			rd.forward(request, response);
 			
 		} catch (IOException e) {
-			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			postHome.terminate();
+			categoryHome.terminate();
 		}
 	}
 

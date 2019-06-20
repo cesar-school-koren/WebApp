@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -11,10 +12,13 @@ import javax.persistence.criteria.Root;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Criteria;
 import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 
 import com.school.koren.model.Post;
@@ -170,6 +174,35 @@ public class PostHome {
 			log.error("find by example failed", re);
 			throw re;
 		}
+	}
+	
+	public List<Post> getAll() {
+		Session session = sessionFactory.getCurrentSession();
+		session.beginTransaction();
+	    CriteriaBuilder cb = session.getCriteriaBuilder();
+	    CriteriaQuery<Post> cq = cb.createQuery(Post.class);
+	    Root<Post> rootEntry = cq.from(Post.class);
+	    CriteriaQuery<Post> all = cq.select(rootEntry);
+	 
+	    TypedQuery<Post> allQuery = session.createQuery(all);
+	    List<Post> resultado = allQuery.getResultList();
+	    session.close();
+	    return resultado;
+	}
+	
+	
+	@SuppressWarnings("deprecation")
+	public List<Post> searchText(String texto){
+		Session session = sessionFactory.getCurrentSession();
+		session.beginTransaction();
+		Criteria crit = session.createCriteria(Post.class);
+		crit.add(Restrictions.ilike("title", texto, MatchMode.ANYWHERE));
+		
+		@SuppressWarnings("unchecked")
+		List<Post> results = crit.list();
+		
+		session.close();
+		return results;
 	}
 	
 	public void terminate() {

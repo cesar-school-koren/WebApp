@@ -94,3 +94,10 @@ INSERT INTO koren.category(
             title)
     VALUES ('Quinze em Diante');
 
+INSERT INTO koren.category(
+            title)
+    VALUES ('Noticias');
+
+INSERT INTO koren.category(
+            title)
+    VALUES ('Eventos');

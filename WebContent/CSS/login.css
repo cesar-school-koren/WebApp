@@ -1,0 +1,6 @@
+@charset "ISO-8859-1";
+.campo-desc {
+  width: 598px;
+  height: 235px;
+  object-fit: contain;
+}
